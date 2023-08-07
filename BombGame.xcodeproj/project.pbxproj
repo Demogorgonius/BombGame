@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8057F3912A8171A30011BE43 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8057F3902A8171A30011BE43 /* UIColor + Extension.swift */; };
+		8057F3932A8171EE0011BE43 /* BombColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8057F3922A8171EE0011BE43 /* BombColor.swift */; };
 		A581F5472A804DB500F7321A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A581F5462A804DB500F7321A /* AppDelegate.swift */; };
 		A581F5492A804DB500F7321A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A581F5482A804DB500F7321A /* SceneDelegate.swift */; };
 		A581F5502A804DB700F7321A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A581F54F2A804DB700F7321A /* Assets.xcassets */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8057F3902A8171A30011BE43 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
+		8057F3922A8171EE0011BE43 /* BombColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombColor.swift; sourceTree = "<group>"; };
 		A581F5432A804DB500F7321A /* BombGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BombGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A581F5462A804DB500F7321A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A581F5482A804DB500F7321A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +86,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8057F38F2A8171910011BE43 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				8057F3902A8171A30011BE43 /* UIColor + Extension.swift */,
+				8057F3922A8171EE0011BE43 /* BombColor.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		A581F53A2A804DB500F7321A = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				A581F5762A804E2C00F7321A /* App */,
+				8057F38F2A8171910011BE43 /* Base */,
 				A581F5772A804E5000F7321A /* Router */,
 				A581F5782A804E5B00F7321A /* Builder */,
 				A581F57D2A804EF700F7321A /* Services */,
@@ -335,6 +349,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8057F3912A8171A30011BE43 /* UIColor + Extension.swift in Sources */,
+				8057F3932A8171EE0011BE43 /* BombColor.swift in Sources */,
 				A581F5812A8050E900F7321A /* Router.swift in Sources */,
 				A581F5852A8053C600F7321A /* Presenter.swift in Sources */,
 				A581F57F2A804F9700F7321A /* StartScreenView.swift in Sources */,

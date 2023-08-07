@@ -15,6 +15,7 @@
 		8016D7AD2A81760A0070128F /* StartScreenRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8016D7AC2A81760A0070128F /* StartScreenRouterInput.swift */; };
 		8016D7B02A8176A20070128F /* StartScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8016D7AF2A8176A20070128F /* StartScreenAssembly.swift */; };
 		8016D7B42A8183D60070128F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8016D7B32A8183D60070128F /* BaseViewController.swift */; };
+		8016D7B62A81886D0070128F /* UIFont + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8016D7B52A81886D0070128F /* UIFont + Extension.swift */; };
 		8057F3912A8171A30011BE43 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8057F3902A8171A30011BE43 /* UIColor + Extension.swift */; };
 		8057F3932A8171EE0011BE43 /* BombColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8057F3922A8171EE0011BE43 /* BombColor.swift */; };
 		A581F5472A804DB500F7321A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A581F5462A804DB500F7321A /* AppDelegate.swift */; };
@@ -55,6 +56,7 @@
 		8016D7AC2A81760A0070128F /* StartScreenRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenRouterInput.swift; sourceTree = "<group>"; };
 		8016D7AF2A8176A20070128F /* StartScreenAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenAssembly.swift; sourceTree = "<group>"; };
 		8016D7B32A8183D60070128F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		8016D7B52A81886D0070128F /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
 		8057F3902A8171A30011BE43 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 		8057F3922A8171EE0011BE43 /* BombColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombColor.swift; sourceTree = "<group>"; };
 		A581F5432A804DB500F7321A /* BombGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BombGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +141,7 @@
 				8057F3902A8171A30011BE43 /* UIColor + Extension.swift */,
 				8057F3922A8171EE0011BE43 /* BombColor.swift */,
 				8016D7B32A8183D60070128F /* BaseViewController.swift */,
+				8016D7B52A81886D0070128F /* UIFont + Extension.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				8016D7AD2A81760A0070128F /* StartScreenRouterInput.swift in Sources */,
 				8057F3932A8171EE0011BE43 /* BombColor.swift in Sources */,
 				8016D7A72A8175680070128F /* StartScreenView.swift in Sources */,
+				8016D7B62A81886D0070128F /* UIFont + Extension.swift in Sources */,
 				8016D7B42A8183D60070128F /* BaseViewController.swift in Sources */,
 				8016D7A92A8175BB0070128F /* StartScreenViewRouter.swift in Sources */,
 				8016D7A32A8175350070128F /* StartScreenViewInput.swift in Sources */,

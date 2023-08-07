@@ -1,21 +1,24 @@
-//
-//  StartScreenView.swift
-//  BombGame
-//
-//  Created by Sergey on 07.08.2023.
-//
-
-import Foundation
 import UIKit
 
-class StartScreenView: UIViewController {
+final class StartScreenView: UIViewController {
     
-    var presenter: StartScreenPresenterProtocol!
+    private let presenter: StartScreenViewOutput
+    
+    init(presenter: StartScreenViewOutput) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+        self.view.backgroundColor = .red
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .red
-        
     }
+}
+
+extension StartScreenView: StartScreenViewInput {
+    
 }

@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8016D7A32A8175350070128F /* StartScreenViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8016D7A22A8175350070128F /* StartScreenViewInput.swift */; };
+		8016D7A52A81754C0070128F /* StartScreenViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8016D7A42A81754C0070128F /* StartScreenViewOutput.swift */; };
+		8016D7A72A8175680070128F /* StartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8016D7A62A8175680070128F /* StartScreenView.swift */; };
+		8016D7A92A8175BB0070128F /* StartScreenViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8016D7A82A8175BB0070128F /* StartScreenViewRouter.swift */; };
+		8016D7AB2A8175D50070128F /* StartScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8016D7AA2A8175D50070128F /* StartScreenPresenter.swift */; };
+		8016D7AD2A81760A0070128F /* StartScreenRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8016D7AC2A81760A0070128F /* StartScreenRouterInput.swift */; };
+		8016D7B02A8176A20070128F /* StartScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8016D7AF2A8176A20070128F /* StartScreenAssembly.swift */; };
 		8057F3912A8171A30011BE43 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8057F3902A8171A30011BE43 /* UIColor + Extension.swift */; };
 		8057F3932A8171EE0011BE43 /* BombColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8057F3922A8171EE0011BE43 /* BombColor.swift */; };
 		A581F5472A804DB500F7321A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A581F5462A804DB500F7321A /* AppDelegate.swift */; };
@@ -16,10 +23,8 @@
 		A581F55E2A804DB700F7321A /* BombGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A581F55D2A804DB700F7321A /* BombGameTests.swift */; };
 		A581F5682A804DB700F7321A /* BombGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A581F5672A804DB700F7321A /* BombGameUITests.swift */; };
 		A581F56A2A804DB700F7321A /* BombGameUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A581F5692A804DB700F7321A /* BombGameUITestsLaunchTests.swift */; };
-		A581F57F2A804F9700F7321A /* StartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A581F57E2A804F9700F7321A /* StartScreenView.swift */; };
 		A581F5812A8050E900F7321A /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A581F5802A8050E900F7321A /* Router.swift */; };
 		A581F5832A8050FE00F7321A /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A581F5822A8050FE00F7321A /* ModuleBuilder.swift */; };
-		A581F5852A8053C600F7321A /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A581F5842A8053C600F7321A /* Presenter.swift */; };
 		A581F5882A80570800F7321A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A581F5872A80570800F7321A /* SnapKit */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +46,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8016D7A22A8175350070128F /* StartScreenViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenViewInput.swift; sourceTree = "<group>"; };
+		8016D7A42A81754C0070128F /* StartScreenViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenViewOutput.swift; sourceTree = "<group>"; };
+		8016D7A62A8175680070128F /* StartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenView.swift; sourceTree = "<group>"; };
+		8016D7A82A8175BB0070128F /* StartScreenViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenViewRouter.swift; sourceTree = "<group>"; };
+		8016D7AA2A8175D50070128F /* StartScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenPresenter.swift; sourceTree = "<group>"; };
+		8016D7AC2A81760A0070128F /* StartScreenRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenRouterInput.swift; sourceTree = "<group>"; };
+		8016D7AF2A8176A20070128F /* StartScreenAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenAssembly.swift; sourceTree = "<group>"; };
 		8057F3902A8171A30011BE43 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 		8057F3922A8171EE0011BE43 /* BombColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombColor.swift; sourceTree = "<group>"; };
 		A581F5432A804DB500F7321A /* BombGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BombGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,10 +66,8 @@
 		A581F5632A804DB700F7321A /* BombGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BombGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A581F5672A804DB700F7321A /* BombGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombGameUITests.swift; sourceTree = "<group>"; };
 		A581F5692A804DB700F7321A /* BombGameUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombGameUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		A581F57E2A804F9700F7321A /* StartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenView.swift; sourceTree = "<group>"; };
 		A581F5802A8050E900F7321A /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		A581F5822A8050FE00F7321A /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
-		A581F5842A8053C600F7321A /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +96,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8016D79F2A8174F60070128F /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				8016D7A82A8175BB0070128F /* StartScreenViewRouter.swift */,
+				8016D7AC2A81760A0070128F /* StartScreenRouterInput.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		8016D7A02A8174FA0070128F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				8016D7AA2A8175D50070128F /* StartScreenPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		8016D7A12A81751D0070128F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8016D7A22A8175350070128F /* StartScreenViewInput.swift */,
+				8016D7A42A81754C0070128F /* StartScreenViewOutput.swift */,
+				8016D7A62A8175680070128F /* StartScreenView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8016D7AE2A8176950070128F /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				8016D7AF2A8176A20070128F /* StartScreenAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
 		8057F38F2A8171910011BE43 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,34 +221,12 @@
 		A581F5792A804E7800F7321A /* StartScreen */ = {
 			isa = PBXGroup;
 			children = (
-				A581F57C2A804EA500F7321A /* Presenter */,
-				A581F57B2A804E9200F7321A /* View */,
-				A581F57A2A804E8800F7321A /* Model */,
+				8016D7AE2A8176950070128F /* Assembly */,
+				8016D7A12A81751D0070128F /* View */,
+				8016D7A02A8174FA0070128F /* Presenter */,
+				8016D79F2A8174F60070128F /* Router */,
 			);
 			path = StartScreen;
-			sourceTree = "<group>";
-		};
-		A581F57A2A804E8800F7321A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		A581F57B2A804E9200F7321A /* View */ = {
-			isa = PBXGroup;
-			children = (
-				A581F57E2A804F9700F7321A /* StartScreenView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		A581F57C2A804EA500F7321A /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				A581F5842A8053C600F7321A /* Presenter.swift */,
-			);
-			path = Presenter;
 			sourceTree = "<group>";
 		};
 		A581F57D2A804EF700F7321A /* Services */ = {
@@ -349,13 +372,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8016D7A52A81754C0070128F /* StartScreenViewOutput.swift in Sources */,
 				8057F3912A8171A30011BE43 /* UIColor + Extension.swift in Sources */,
+				8016D7AD2A81760A0070128F /* StartScreenRouterInput.swift in Sources */,
 				8057F3932A8171EE0011BE43 /* BombColor.swift in Sources */,
+				8016D7A72A8175680070128F /* StartScreenView.swift in Sources */,
+				8016D7A92A8175BB0070128F /* StartScreenViewRouter.swift in Sources */,
+				8016D7A32A8175350070128F /* StartScreenViewInput.swift in Sources */,
 				A581F5812A8050E900F7321A /* Router.swift in Sources */,
-				A581F5852A8053C600F7321A /* Presenter.swift in Sources */,
-				A581F57F2A804F9700F7321A /* StartScreenView.swift in Sources */,
 				A581F5472A804DB500F7321A /* AppDelegate.swift in Sources */,
+				8016D7B02A8176A20070128F /* StartScreenAssembly.swift in Sources */,
 				A581F5832A8050FE00F7321A /* ModuleBuilder.swift in Sources */,
+				8016D7AB2A8175D50070128F /* StartScreenPresenter.swift in Sources */,
 				A581F5492A804DB500F7321A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,13 +1,12 @@
 import UIKit
 
-final class StartScreenView: UIViewController {
+class StartScreenView: BaseViewController {
     
     private let presenter: StartScreenViewOutput
     
     init(presenter: StartScreenViewOutput) {
         self.presenter = presenter
-        super.init(nibName: nil, bundle: nil)
-        self.view.backgroundColor = .red
+        super.init()
     }
     
     required init?(coder: NSCoder) {

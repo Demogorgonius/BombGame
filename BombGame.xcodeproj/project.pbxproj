@@ -28,6 +28,7 @@
 		A581F5812A8050E900F7321A /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A581F5802A8050E900F7321A /* Router.swift */; };
 		A581F5832A8050FE00F7321A /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A581F5822A8050FE00F7321A /* ModuleBuilder.swift */; };
 		A581F5882A80570800F7321A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A581F5872A80570800F7321A /* SnapKit */; };
+		A581F58B2A82BAD400F7321A /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = A581F58A2A82BAD400F7321A /* Lottie */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A581F5882A80570800F7321A /* SnapKit in Frameworks */,
+				A581F58B2A82BAD400F7321A /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +262,7 @@
 			name = BombGame;
 			packageProductDependencies = (
 				A581F5872A80570800F7321A /* SnapKit */,
+				A581F58A2A82BAD400F7321A /* Lottie */,
 			);
 			productName = BombGame;
 			productReference = A581F5432A804DB500F7321A /* BombGame.app */;
@@ -335,6 +338,7 @@
 			mainGroup = A581F53A2A804DB500F7321A;
 			packageReferences = (
 				A581F5862A80570800F7321A /* XCRemoteSwiftPackageReference "SnapKit" */,
+				A581F5892A82BAD400F7321A /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = A581F5442A804DB500F7321A /* Products */;
 			projectDirPath = "";
@@ -742,6 +746,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		A581F5892A82BAD400F7321A /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -749,6 +761,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A581F5862A80570800F7321A /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		A581F58A2A82BAD400F7321A /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A581F5892A82BAD400F7321A /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

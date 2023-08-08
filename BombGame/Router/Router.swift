@@ -15,7 +15,7 @@ protocol RouterOutputProtocol: AnyObject {
     
 }
 
-protocol RouterProtocol: AnyObject {
+protocol RouterProtocol: RouterOutputProtocol {
     
     func showStartScreenController()
     

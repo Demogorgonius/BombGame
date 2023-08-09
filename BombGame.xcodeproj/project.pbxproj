@@ -39,6 +39,7 @@
 		A581F5832A8050FE00F7321A /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A581F5822A8050FE00F7321A /* ModuleBuilder.swift */; };
 		A581F5882A80570800F7321A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A581F5872A80570800F7321A /* SnapKit */; };
 		A581F58B2A82BAD400F7321A /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = A581F58A2A82BAD400F7321A /* Lottie */; };
+		A581F58D2A8405DA00F7321A /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A581F58C2A8405DA00F7321A /* Questions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		A581F5692A804DB700F7321A /* BombGameUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombGameUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A581F5802A8050E900F7321A /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		A581F5822A8050FE00F7321A /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
+		A581F58C2A8405DA00F7321A /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +254,7 @@
 				8057F3922A8171EE0011BE43 /* BombColor.swift */,
 				8016D7B32A8183D60070128F /* BaseViewController.swift */,
 				8016D7B52A81886D0070128F /* UIFont + Extension.swift */,
+				A581F58C2A8405DA00F7321A /* Questions.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";

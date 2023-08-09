@@ -7,6 +7,7 @@ extension GameEndScreenView {
         let buttonStakSidePadding: CGFloat = 45.0
         let titleLabelSidePadding: CGFloat = 8.0
         let titleLabelTopPadding: CGFloat = 57.0
+        let imageProportion: CGFloat = 249.0 / 300.0
         
         let bombImage: UIImage? = UIImage(named: "explosion")
     }
@@ -24,7 +25,7 @@ class GameEndScreenView: BaseViewController {
         return button
     }()
     
-    private lazy var categoryButton: UIButton = {
+    private lazy var restartButton: UIButton = {
         let button = createButton(title: "Начать заново", font: .regular24)
         button.layer.cornerRadius = constants.violetButtonHeight / 2
         return button
@@ -37,6 +38,12 @@ class GameEndScreenView: BaseViewController {
         )
     }()
     
+    private lazy var bombImageView: UIImageView = {
+        let view = UIImageView(image: constants.bombImage)
+        view.contentMode = .scaleToFill
+        return view
+    }()
+    
     private lazy var punishmentLabel: UILabel = {
         return createLabel(
             text: "В следующем раунде после каждого ответа хлопать в ладоши",
@@ -45,15 +52,9 @@ class GameEndScreenView: BaseViewController {
         )
     }()
     
-    private lazy var bombImageView: UIImageView = {
-        let view = UIImageView(image: constants.bombImage)
-        view.contentMode = .scaleToFill
-        return view
-    }()
-    
     private lazy var buttonsStack: UIStackView = {
         return toStackView(
-            subviews: [startButton, categoryButton],
+            subviews: [startButton, restartButton],
             spacing: 10, axis: .vertical, distribution: .fillEqually,
             alignment: .fill
         )
@@ -83,7 +84,7 @@ extension GameEndScreenView: GameEndViewInput {
 
 private extension GameEndScreenView {
     func addSubviews() {
-        [titleLabel, punishmentLabel, bombImageView, buttonsStack].forEach({ self.view.addSubview($0) })
+        [titleLabel, bombImageView, punishmentLabel, buttonsStack].forEach({ self.view.addSubview($0) })
     }
     
     func makeLayout() {
@@ -92,27 +93,28 @@ private extension GameEndScreenView {
             make.top.equalToSuperview().inset(constants.titleLabelTopPadding)
         }
         
+        bombImageView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(bombImageView.snp.height).multipliedBy(constants.imageProportion)
+
+        }
+        
         punishmentLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(titleLabel.snp.bottom)
+            make.top.equalTo(bombImageView.snp.bottom)
         }
         
-        bombImageView.snp.makeConstraints { make in
-            make.top.equalTo(punishmentLabel.snp.bottom)
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(self.view.snp.height).dividedBy(1.8)
-        }
-        
-        [startButton, categoryButton].forEach({
+        [startButton, restartButton].forEach({
             $0.snp.makeConstraints { make in
                 make.height.equalTo(constants.violetButtonHeight)
             }
         })
         
         buttonsStack.snp.makeConstraints { make in
-            make.top.equalTo(bombImageView.snp.bottom)
+            make.top.equalTo(punishmentLabel.snp.bottom)
             make.leading.trailing.equalToSuperview().inset(constants.buttonStakSidePadding)
-            make.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().inset(constants.buttonStakSidePadding)
         }
     }
 }

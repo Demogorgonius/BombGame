@@ -25,13 +25,18 @@ final class GameView: BaseViewController {
     private let constants: Constants
     private let baseConstants: BaseConstants
     private let presenter: GameViewOutput
+    
     private var animationView: LottieAnimationView?
+    
+    var totalTime = 5 // тестовый режим!!!
+    var secondsPassed = 0
+    var timer = Timer()
     
     private lazy var titleLabel: UILabel = {
         return createLabel(
             text: "Нажмите\n" + "\"Запустить\"\n" + "чтобы начать игру",
             font: .regular24,
-            textColor: .purple,
+            textColor: baseConstants.violetColor,
             alignment: .center
         )
     }()
@@ -59,11 +64,12 @@ final class GameView: BaseViewController {
         addSubviews()
         makeLayout()
         bombLottiAnimation()
+        startTimer()
     }
     
     // MARK:- Private Methods
     @objc private func startButtonTapped() {
-       // presenter
+        presenter.startButtonTapped()
     }
     
     private func bombLottiAnimation() {
@@ -80,9 +86,35 @@ final class GameView: BaseViewController {
         // 6. Play animation
         animationView!.stop()
     }
+    
+    func startTimer () {
+         timer.invalidate()
+         
+         secondsPassed = 0
+         timer = Timer.scheduledTimer(
+             timeInterval: 1.0,
+             target: self,
+             selector: #selector(updateTimer),
+             userInfo: nil,
+             repeats: true
+         )
+     }
+    
+    @objc func updateTimer() {
+        if secondsPassed < totalTime {
+            secondsPassed += 1
+            let percentageProgress = Float(secondsPassed) / Float(totalTime)
+            
+            
+        } else {
+            timer.invalidate()
+            let endGameScreen = GameEndAssembly.assemble()
+            navigationController?.pushViewController(endGameScreen, animated: true)
+        }
+    }
 }
 
-extension GameView: GameViewOutput {
+extension GameView: GameViewInput {
     func updateGameUI() {
         startButton.isHidden = true
 

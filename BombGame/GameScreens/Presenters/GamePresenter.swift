@@ -16,7 +16,6 @@ final class GamePresenter {
     init(router: GameRouterInput) {
         self.router = router
     }
-    
 }
 
 extension GamePresenter: GameViewOutput {

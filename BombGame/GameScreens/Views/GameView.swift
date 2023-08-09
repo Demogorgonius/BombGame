@@ -26,9 +26,9 @@ final class GameView: BaseViewController {
     private let baseConstants: BaseConstants
     private let presenter: GameViewOutput
     
-    private var animationView: LottieAnimationView?
+    private var animationView: LottieAnimationView
     
-    var totalTime = 5 // тестовый режим!!!
+    var totalTime = 35// тестовый режим!!!
     var secondsPassed = 0
     var timer = Timer()
     
@@ -40,8 +40,7 @@ final class GameView: BaseViewController {
             alignment: .center
         )
     }()
-    
-    
+
     private lazy var startButton: UIButton = {
         let button = createButton(title: "Запустить", font: .regular24)
         button.layer.cornerRadius = constants.violetButtonHeight / 2
@@ -53,6 +52,7 @@ final class GameView: BaseViewController {
         self.presenter = presenter
         self.baseConstants = BaseConstants()
         self.constants = Constants()
+        self.animationView = LottieAnimationView()
         super.init()
     }
     
@@ -73,18 +73,22 @@ final class GameView: BaseViewController {
     }
     
     private func bombLottiAnimation() {
-        // 2. Start LottieAnimationView
         animationView = .init(name: "animationBobm")
-        animationView!.frame = view.bounds
-        // 3. Set animation content mode
-        animationView!.contentMode = .scaleAspectFit
-        // 4. Set animation loop mode
-        animationView!.loopMode = .loop
-        // 5. Adjust animation speed
-        animationView!.animationSpeed = 0.3
-        view.addSubview(animationView!)
-        // 6. Play animation
-        animationView!.stop()
+        animationView.frame = view.bounds
+        animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .loop
+        animationView.animationSpeed = 0.3
+        
+        view.addSubview(animationView)
+
+        animationView.stop()
+
+        animationView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(223)
+            make.leading.equalToSuperview().offset(74)
+            make.trailing.equalToSuperview().offset(-11)
+            make.bottom.equalToSuperview().offset(-237)
+        }
     }
     
     func startTimer () {
@@ -120,7 +124,7 @@ extension GameView: GameViewInput {
 
         titleLabel.text = "назовите вид зимнего спорта"
         
-        animationView?.play()
+        animationView.play()
     }
     
 }
@@ -132,14 +136,17 @@ private extension GameView {
     
     func makeLayout() {
         titleLabel.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(constants.titleLabelSidePadding)
-            make.top.equalToSuperview().inset(constants.buttonStakSidePadding)
+            make.top.equalToSuperview().offset(127)
+            make.leading.equalToSuperview().offset(24)
+            make.trailing.equalToSuperview().offset(-22)
         }
+        
         
         startButton.snp.makeConstraints { make in
             
             make.leading.trailing.equalToSuperview().inset(constants.buttonStakSidePadding)
             make.bottom.equalToSuperview().inset(constants.buttonStakSidePadding)
+            make.height.equalTo(constants.violetButtonHeight)
         }
     }
 }

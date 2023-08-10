@@ -87,13 +87,13 @@ struct Questions {
 
 }
 
-enum Categories {
+enum Categories: String {
     
-    case geography
-    case literature
-    case music
-    case food
-    case other
-    case internet
+    case geography = "География"
+    case literature = "Литература"
+    case music = "Музыка"
+    case food = "Кулинария"
+    case other = "Разное"
+    case internet = "Интернетb"
     
 }

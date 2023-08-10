@@ -56,6 +56,7 @@ extension BaseViewController {
         label.text = text
         label.textColor = textColor
         label.font = font
+        
         label.textAlignment = alignment
         return label
     }

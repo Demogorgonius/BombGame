@@ -3,7 +3,7 @@ import Foundation
 final class StartScreenPresenter {
     
     weak var view: StartScreenViewInput?
-    
+        
     private let router: StartScreenRouterInput
     
     init(router: StartScreenRouterInput) {
@@ -13,5 +13,7 @@ final class StartScreenPresenter {
 }
 
 extension StartScreenPresenter: StartScreenViewOutput {
-    
+    func didTapCategory() {
+        self.router.routeToCategory()
+    }
 }

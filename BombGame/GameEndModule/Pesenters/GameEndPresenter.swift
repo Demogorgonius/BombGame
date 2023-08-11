@@ -13,5 +13,12 @@ final class GameEndPresenter {
 }
 
 extension GameEndPresenter: GameEndViewOutput {
+    func punishmentButtonTapped() {
+        view?.updatePunishment()
+    }
+    
+    func restartButtonTapped() {
+        self.router.routeToGameScreen()
+    }
     
 }

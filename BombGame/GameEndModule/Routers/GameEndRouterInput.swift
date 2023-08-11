@@ -1,5 +1,5 @@
 
 
 protocol GameEndScreenRouterInput {
-    
+    func routeToGameScreen()
 }

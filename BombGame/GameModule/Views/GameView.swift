@@ -26,7 +26,7 @@ final class GameView: BaseViewController {
     
     private var pauseBarButtonItem: UIBarButtonItem!
     
-    var totalTime = 30
+    var totalTime = 5
     var secondsPassed: CGFloat = 0.0
     var timer = Timer()
     
@@ -45,7 +45,6 @@ final class GameView: BaseViewController {
         view.animationSpeed = 1
         view.frame = view.bounds
         view.contentMode = .scaleAspectFill
-        view.loopMode = .loop
         view.stop()
         return view
     }()

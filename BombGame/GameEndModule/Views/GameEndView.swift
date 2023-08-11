@@ -19,8 +19,9 @@ class GameEndScreenView: BaseViewController {
     private let baseConstants: BaseConstants
     private let presenter: GameEndViewOutput
     
-    private lazy var startButton: UIButton = {
-        let button = createButton(title: "Другое задание", font: .regular24)
+    private lazy var punishmentButton: UIButton = {
+        let button = createButton(title: "Другое наказание", font: .regular24)
+        button.addTarget(nil, action: #selector(punishmentButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = constants.violetButtonHeight / 2
         return button
     }()
@@ -28,6 +29,7 @@ class GameEndScreenView: BaseViewController {
     private lazy var restartButton: UIButton = {
         let button = createButton(title: "Начать заново", font: .regular24)
         button.layer.cornerRadius = constants.violetButtonHeight / 2
+        button.addTarget(nil, action: #selector(restartButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -54,7 +56,7 @@ class GameEndScreenView: BaseViewController {
     
     private lazy var buttonsStack: UIStackView = {
         return toStackView(
-            subviews: [startButton, restartButton],
+            subviews: [punishmentButton, restartButton],
             spacing: 10, axis: .vertical, distribution: .fillEqually,
             alignment: .fill
         )
@@ -77,9 +79,21 @@ class GameEndScreenView: BaseViewController {
         makeLayout()
         title = "Игра"
     }
+    
+    @objc func restartButtonTapped() {
+        presenter.restartButtonTapped()
+    }
+    
+    @objc func punishmentButtonTapped () {
+        presenter.punishmentButtonTapped()
+    }
 }
 
 extension GameEndScreenView: GameEndViewInput {
+    func updatePunishment() {
+        punishmentLabel.text = "улыбнись"
+    }
+    
     
 }
 
@@ -108,7 +122,7 @@ private extension GameEndScreenView {
             make.top.equalTo(bombImageView.snp.bottom)
         }
         
-        [startButton, restartButton].forEach({
+        [punishmentButton, restartButton].forEach({
             $0.snp.makeConstraints { make in
                 make.height.equalTo(constants.violetButtonHeight)
             }

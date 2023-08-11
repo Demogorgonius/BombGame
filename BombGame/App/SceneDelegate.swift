@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         self.window = window
         
-        let startScreen = GameAssembly.assemble()
+        let startScreen = StartScreenAssembly.assemble()
         let navigationVC = UINavigationController(rootViewController: startScreen)
         
         window.rootViewController = navigationVC

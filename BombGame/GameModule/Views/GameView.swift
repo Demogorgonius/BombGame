@@ -42,7 +42,7 @@ final class GameView: BaseViewController {
     private lazy var animationView: LottieAnimationView = {
         let view = LottieAnimationView(name: "animationBobm")
         view.loopMode = .loop
-        view.animationSpeed = 0.3
+        view.animationSpeed = 1
         view.frame = view.bounds
         view.contentMode = .scaleAspectFill
         view.loopMode = .loop
@@ -94,9 +94,10 @@ final class GameView: BaseViewController {
     }
     
     @objc private func homeButtonTapped() {
-        navigationController?.pushViewController(StartScreenAssembly.assemble(), animated: true)
+        presenter.homeButtonTapped()
     }
 }
+
 // MARK: - GameViewInput
 extension GameView: GameViewInput {
     func addTimer() {
@@ -146,10 +147,11 @@ extension GameView: GameViewInput {
             titleLabel.text = "ПАУЗА!!!"
             pauseBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(pauseButtonTapped))
         } else {
-            animationView.play()
-            startTimer()
-            titleLabel.text = "Назовите вид зимнего спорта"
-            pauseBarButtonItem = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(pauseButtonTapped))
+            //updateGameUI()
+                        animationView.play()
+                        startTimer()
+                        titleLabel.text = "Назовите вид зимнего спорта"
+                        pauseBarButtonItem = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(pauseButtonTapped))
         }
         navigationItem.rightBarButtonItem = pauseBarButtonItem
     }

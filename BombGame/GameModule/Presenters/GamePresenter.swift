@@ -31,4 +31,7 @@ extension GamePresenter: GameViewOutput {
         view?.updateGameUI()
     }
     
+    func homeButtonTapped() {
+        self.router.routeToStartScreen()
+    }
 }

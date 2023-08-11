@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class RulesViewController: UIViewController {
+final class RulesViewController: BaseViewController {
     
     let moduleView = RulesView()
     

@@ -18,7 +18,7 @@ final class RulesView: UIView {
     
     private lazy var firstStack = createStack(text: "Все игроки становятся в круг.", number: 1)
     private lazy var secondStack = createStack(text: "Первый игрок берет телефон и нажимает кнопку:", number: 2)
-    private lazy var startButton = UIButton()
+    private lazy var startGameImage = UIImageView()
     private lazy var thirdtack = createStack(text: "На экране появляется вопрос “Назовите Фрукт”.", number: 3)
     private lazy var fourthStack = createStack(text: "Игрок отвечает на вопрос и после правильного ответа передает телефон следующему игроку (правильность ответа определяют другие участники).", number: 4)
     private lazy var fiveStack = createStack(text: "Игроки по кругу отвечают на один и тот же вопрос до тех пор, пока не взорвется бомба.", number: 5)
@@ -31,6 +31,12 @@ final class RulesView: UIView {
     private lazy var categoryStack = UIStackView()
     private lazy var firstCategoryLabel = UILabel()
     private lazy var secondCategoryLabel = UILabel()
+    private lazy var firstCategoryStack = UIStackView()
+    private lazy var secondCategoryStack = UIStackView()
+    private lazy var natureCatImage = UIImageView()
+    private lazy var cinemaCatImage = UIImageView()
+    private lazy var otherCatImage = UIImageView()
+    private lazy var sportCatImage = UIImageView()
                                                 
     // MARK: - LifeCycle
     
@@ -57,8 +63,11 @@ private extension RulesView {
         addSubview(mainTitle)
         addSubview(scrollView)
         scrollView.addSubview(mainStack)
+        scrollView.addSubview(secondMainTitle)
         scrollView.addSubview(thirdMainTitle)
         scrollView.addSubview(categoryStack)
+        scrollView.addSubview(firstCategoryStack)
+        scrollView.addSubview(secondCategoryStack)
         
     }
     
@@ -74,22 +83,9 @@ private extension RulesView {
         secondMainTitle.text = "Правила игры"
         secondMainTitle.textAlignment = .center
         secondMainTitle.textColor = .purple
-        secondMainTitle.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        secondMainTitle.font = UIFont.systemFont(ofSize: 32, weight: .bold)
         
-        startButton.setTitle("Старт игры", for: .normal)
-        startButton.isUserInteractionEnabled = false
-        startButton.backgroundColor = .purple
-        startButton.frame = CGRect(x: 50, y: 50, width: 50, height: 50)
-        startButton.layer.cornerRadius = 10
-        startButton.clipsToBounds = true
-        
-        scrollView.backgroundColor = .white
-        scrollView.addSubview(mainStack)
-        scrollView.addSubview(secondMainTitle)
-        scrollView.addSubview(categoryStack)
-        
-        
-        //        scrollView.contentSize = CGSize(width: scrollView.bounds.width, height: 2000)
+        startGameImage.image = UIImage(named: "startGameButton")
         
         mainStack.axis = .vertical
         mainStack.spacing = 30
@@ -97,7 +93,7 @@ private extension RulesView {
         mainStack.addArrangedSubview(firstStack)
         mainStack.addArrangedSubview(secondStack)
         mainStack.setCustomSpacing(2, after: secondStack)
-        mainStack.addArrangedSubview(startButton)
+        mainStack.addArrangedSubview(startGameImage)
         mainStack.addArrangedSubview(thirdtack)
         mainStack.addArrangedSubview(fourthStack)
         mainStack.addArrangedSubview(fiveStack)
@@ -107,11 +103,11 @@ private extension RulesView {
         secondMainTitle.text = "Правила игры"
         secondMainTitle.textAlignment = .center
         secondMainTitle.textColor = .purple
-        secondMainTitle.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        secondMainTitle.font = UIFont.systemFont(ofSize: 32, weight: .bold)
         
         thirdMainTitle.text = "Категории"
         thirdMainTitle.textColor = .purple
-        thirdMainTitle.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        thirdMainTitle.font = UIFont.systemFont(ofSize: 32, weight: .bold)
         
         categoryStack.axis = .vertical
         categoryStack.spacing = 55
@@ -120,16 +116,46 @@ private extension RulesView {
         categoryStack.addArrangedSubview(secondCategoryLabel)
         
         firstCategoryLabel.text = "В игре доступно 6 категорий и более 90 вопросов."
-        firstCategoryLabel.font = UIFont.systemFont(ofSize: 25, weight: .bold)
+        firstCategoryLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         firstCategoryLabel.textAlignment = .center
         firstCategoryLabel.numberOfLines = 0
         firstCategoryLabel.lineBreakMode = .byWordWrapping
         
         secondCategoryLabel.text = "Можно выбрать сразу несколько категорий для игры."
-        secondCategoryLabel.font = UIFont.systemFont(ofSize: 25, weight: .bold)
+        secondCategoryLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         secondCategoryLabel.textAlignment = .center
         secondCategoryLabel.numberOfLines = 0
         secondCategoryLabel.lineBreakMode = .byWordWrapping
+        
+        firstCategoryStack.axis = .horizontal
+        firstCategoryStack.spacing = 8
+        firstCategoryStack.alignment = .fill
+        firstCategoryStack.distribution = .fillEqually
+        firstCategoryStack.addArrangedSubview(natureCatImage)
+        firstCategoryStack.addArrangedSubview(cinemaCatImage)
+        
+        
+        secondCategoryStack.axis = .horizontal
+        secondCategoryStack.spacing = 8
+        secondCategoryStack.alignment = .fill
+        secondCategoryStack.distribution = .fillEqually
+        secondCategoryStack.addArrangedSubview(otherCatImage)
+        secondCategoryStack.addArrangedSubview(sportCatImage)
+
+        
+        natureCatImage.image = UIImage(named: "nature")
+        natureCatImage.contentMode = .scaleAspectFit
+        
+        cinemaCatImage.image = UIImage(named: "cinema")
+        cinemaCatImage.contentMode = .scaleAspectFit
+        
+        otherCatImage.image = UIImage(named: "other")
+        otherCatImage.contentMode = .scaleAspectFit
+        
+        sportCatImage.image = UIImage(named: "sport")
+        sportCatImage.contentMode = .scaleAspectFit
+        
+        
     }
     
     func setupConstraints() {
@@ -158,23 +184,23 @@ private extension RulesView {
         mainStack.snp.makeConstraints {
             $0.leading.trailing.equalTo(scrollView)
             $0.top.equalTo(secondMainTitle.snp.bottom).inset(-30)
-            //            $0.bottom.equalTo(scrollView.snp.bottom)
+
         }
         
-        startButton.snp.makeConstraints {
+        startGameImage.snp.makeConstraints {
             $0.centerX.equalTo(mainStack.snp.centerX)
         }
         
         thirdMainTitle.snp.makeConstraints {
-            $0.top.equalTo(mainStack.snp.bottom).offset(50)
+            $0.top.equalTo(mainStack.snp.bottom).offset(40)
             $0.centerX.equalTo(scrollView.snp.centerX)
-//            $0.bottom.equalTo(scrollView.snp.bottom)
+
         }
         
         categoryStack.snp.makeConstraints {
             $0.top.equalTo(thirdMainTitle.snp.bottom).offset(40)
             $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(scrollView.snp.bottom)
+
         }
         
         firstCategoryLabel.snp.makeConstraints {
@@ -184,13 +210,24 @@ private extension RulesView {
         secondCategoryLabel.snp.makeConstraints {
             $0.width.equalTo(300)
         }
+        
+        firstCategoryStack.snp.makeConstraints {
+            $0.top.equalTo(categoryStack.snp.bottom).offset(10)
+            $0.centerX.equalToSuperview()
+        }
+        
+        secondCategoryStack.snp.makeConstraints {
+            $0.top.equalTo(firstCategoryStack.snp.bottom).offset(-20)
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(scrollView.snp.bottom)
+        }
     }
         
         func createText() -> NSMutableAttributedString  {
             let stringOne = NSMutableAttributedString(string:"Если в настройках выбран режим игры ")
             let stringThree = NSMutableAttributedString(string:", то проигравший выполняет задание.")
             let stringAtr = [NSAttributedString.Key.foregroundColor : BombColor.violet.color.cgColor]
-            let stringTow = NSMutableAttributedString(string: "“С Заданиями”", attributes: stringAtr)
+            let stringTow = NSMutableAttributedString(string: " “С Заданиями”", attributes: stringAtr)
             let finalString = NSMutableAttributedString()
             finalString.append(stringOne)
             finalString.append(stringTow)
@@ -223,6 +260,7 @@ private extension RulesView {
             }
             
             label.text = text
+            label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
             label.textAlignment = .center
             label.numberOfLines = 0
             label.lineBreakMode = .byWordWrapping

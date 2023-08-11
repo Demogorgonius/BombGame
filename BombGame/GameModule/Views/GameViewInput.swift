@@ -9,5 +9,6 @@ import Foundation
 
 protocol GameViewInput: AnyObject {
     func updateGameUI()
-    func updateTimer() 
+    func addTimer()
+    func updateTimerAnimation() 
 }

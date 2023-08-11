@@ -9,4 +9,6 @@ import Foundation
 
 protocol GameViewOutput {
     func startButtonTapped()
+    func pauseButtonTapped()
+    func startTimer()
 }

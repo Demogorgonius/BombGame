@@ -19,7 +19,16 @@ final class GamePresenter {
 }
 
 extension GamePresenter: GameViewOutput {
+    func startTimer() {
+        view?.addTimer()
+    }
+    
+    func pauseButtonTapped() {
+        view?.updateTimerAnimation()
+    }
+    
     func startButtonTapped() {
         view?.updateGameUI()
     }
+    
 }

@@ -26,8 +26,8 @@ final class GameView: BaseViewController {
     
     private var pauseBarButtonItem: UIBarButtonItem!
     
-    var totalTime = 30// тестовый режим!!!
-    var secondsPassed = 0
+    var totalTime = 30
+    var secondsPassed: CGFloat = 0.0
     var timer = Timer()
     
     private lazy var titleLabel: UILabel = {
@@ -42,7 +42,7 @@ final class GameView: BaseViewController {
     private lazy var animationView: LottieAnimationView = {
         let view = LottieAnimationView(name: "animationBobm")
         view.loopMode = .loop
-        view.animationSpeed = 1.0
+        view.animationSpeed = 0.3
         view.frame = view.bounds
         view.contentMode = .scaleAspectFill
         view.loopMode = .loop
@@ -84,10 +84,22 @@ final class GameView: BaseViewController {
     @objc private func startButtonTapped() {
         presenter.startButtonTapped()
     }
+    
+    @objc private func pauseButtonTapped() {
+        presenter.pauseButtonTapped()
+    }
+    
+    private func startTimer() {
+        presenter.startTimer()
+    }
+    
     @objc private func homeButtonTapped() {
         navigationController?.pushViewController(StartScreenAssembly.assemble(), animated: true)
     }
-    private func startTimer() {
+}
+// MARK: - GameViewInput
+extension GameView: GameViewInput {
+    func addTimer() {
         timer.invalidate()
         
         secondsPassed = 0
@@ -100,7 +112,34 @@ final class GameView: BaseViewController {
         )
     }
     
-    @objc internal func pauseButtonTapped() {
+    @objc func updateTimer() {
+        let animationDuration = TimeInterval(totalTime)
+        
+        if !animationView.isAnimationPlaying {
+            animationView.play()
+        }
+        
+        if secondsPassed < animationDuration {
+            secondsPassed += 1
+        } else {
+            timer.invalidate()
+            let endGameScreen = GameEndAssembly.assemble()
+            navigationController?.pushViewController(endGameScreen, animated: true)
+        }
+    }
+    
+    
+    func updateGameUI() {
+        startButton.isHidden = true
+        startTimer()
+        animationView.play()
+        titleLabel.text = "назовите вид зимнего спорта"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(pauseButtonTapped))
+        
+        navigationController?.navigationBar.tintColor = baseConstants.violetColor
+    }
+    
+    func updateTimerAnimation() {
         if animationView.isAnimationPlaying {
             animationView.pause()
             timer.invalidate()
@@ -115,41 +154,6 @@ final class GameView: BaseViewController {
         navigationItem.rightBarButtonItem = pauseBarButtonItem
     }
     
-    @objc func updateTimer() {
-        
-        let animationDuration = TimeInterval(totalTime)
-
-        if secondsPassed < totalTime {
-            secondsPassed += 1
-            let percentageProgress = CGFloat(secondsPassed) / CGFloat(totalTime)
-            
-            // Calculate the frame number based on the percentage progress
-            let totalFrames = animationView.animation?.time(forFrame: 1) ?? 0
-            let targetFrame = percentageProgress * totalFrames
-            
-            // Check if the current frame of the animation matches the target frame
-            if animationView.currentFrame == targetFrame {
-                // Pause the animation
-                animationView.pause()
-            }
-        } else {
-            timer.invalidate()
-            let endGameScreen = GameEndAssembly.assemble()
-            navigationController?.pushViewController(endGameScreen, animated: true)
-        }
-    }
-}
-
-extension GameView: GameViewInput {
-    func updateGameUI() {
-        startButton.isHidden = true
-        startTimer()
-        animationView.play()
-        titleLabel.text = "назовите вид зимнего спорта"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(pauseButtonTapped))
-        
-        navigationController?.navigationBar.tintColor = baseConstants.violetColor
-    }
 }
 
 private extension GameView {

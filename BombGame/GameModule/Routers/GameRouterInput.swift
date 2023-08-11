@@ -1,0 +1,4 @@
+
+protocol GameRouterInput {
+    func routeToStartScreen()
+}

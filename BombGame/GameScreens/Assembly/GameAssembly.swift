@@ -6,7 +6,7 @@ final class GameAssembly {
         let presenter = GamePresenter(router: router)
         let view = GameView(presenter: presenter)
         
-        presenter.view = view as? any GameViewInput
+        presenter.view = view
         router.view = view
         
         return view

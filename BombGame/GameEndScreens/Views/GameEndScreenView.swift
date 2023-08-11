@@ -5,8 +5,8 @@ extension GameEndScreenView {
     struct Constants {
         let violetButtonHeight: CGFloat = 79.0
         let buttonStakSidePadding: CGFloat = 45.0
-        let titleLabelSidePadding: CGFloat = 8.0
-        let titleLabelTopPadding: CGFloat = 57.0
+        let titleLabelSidePadding: CGFloat = 3.0
+        let titleLabelTopPadding: CGFloat = 120.0
         let imageProportion: CGFloat = 249.0 / 300.0
         
         let bombImage: UIImage? = UIImage(named: "explosion")
@@ -40,7 +40,7 @@ class GameEndScreenView: BaseViewController {
     
     private lazy var bombImageView: UIImageView = {
         let view = UIImageView(image: constants.bombImage)
-        view.contentMode = .scaleToFill
+        view.contentMode = .scaleAspectFit
         return view
     }()
     
@@ -75,6 +75,7 @@ class GameEndScreenView: BaseViewController {
         super.viewDidLoad()
         addSubviews()
         makeLayout()
+        title = "Игра"
     }
 }
 
@@ -94,14 +95,16 @@ private extension GameEndScreenView {
         }
         
         bombImageView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom)
+            make.top.equalToSuperview().offset(166)
             make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-346)
             make.width.equalTo(bombImageView.snp.height).multipliedBy(constants.imageProportion)
 
         }
         
         punishmentLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
+            make.leading.equalToSuperview().inset(constants.titleLabelSidePadding)
+            make.trailing.equalToSuperview().inset(constants.titleLabelSidePadding)
             make.top.equalTo(bombImageView.snp.bottom)
         }
         

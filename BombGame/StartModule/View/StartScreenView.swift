@@ -26,6 +26,7 @@ class StartScreenView: BaseViewController {
     
     private lazy var categoryButton: UIButton = {
         let button = createButton(title: "Категории", font: .regular24)
+        button.addTarget(self, action: #selector(didTapCategory), for: .touchUpInside)
         button.layer.cornerRadius = constants.violetButtonHeight / 2
         return button
     }()
@@ -81,6 +82,10 @@ extension StartScreenView: StartScreenViewInput {
 }
 
 private extension StartScreenView {
+    @objc func didTapCategory() {
+        presenter.didTapCategory()
+    }
+    
     func addSubviews() {
         [titleLabel, gameLabel, bombImageView, buttonsStack].forEach({ self.view.addSubview($0) })
     }

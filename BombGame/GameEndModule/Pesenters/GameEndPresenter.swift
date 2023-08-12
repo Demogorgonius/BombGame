@@ -21,4 +21,8 @@ extension GameEndPresenter: GameEndViewOutput {
         self.router.routeToGameScreen()
     }
     
+    func homeButtonTapped() {
+        self.router.routeToStartScreen()
+    }
+    
 }

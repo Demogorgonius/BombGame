@@ -2,5 +2,6 @@ import Foundation
 
 protocol StartScreenViewOutput {
     func didTapCategory()
-    func dadTapPlay()
+    func didTapPlay()
+    func rulesButtonTapped()
 }

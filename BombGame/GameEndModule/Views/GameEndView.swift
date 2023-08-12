@@ -6,7 +6,7 @@ extension GameEndScreenView {
         let violetButtonHeight: CGFloat = 79.0
         let buttonStakSidePadding: CGFloat = 45.0
         let titleLabelSidePadding: CGFloat = 3.0
-        let titleLabelTopPadding: CGFloat = 120.0
+        let titleLabelTopPadding: CGFloat = 100.0
         let imageProportion: CGFloat = 249.0 / 300.0
         
         let bombImage: UIImage? = UIImage(named: "explosion")
@@ -18,6 +18,15 @@ class GameEndScreenView: BaseViewController {
     private let constants: Constants
     private let baseConstants: BaseConstants
     private let presenter: GameEndViewOutput
+    
+    private lazy var mainTitle: UILabel = {
+        return createLabel(
+            text: "Игра",
+            font: .bold32,
+            textColor: baseConstants.violetColor,
+            alignment: .center
+        )
+    }()
     
     private lazy var punishmentButton: UIButton = {
         let button = createButton(title: "Другое наказание", font: .regular24)
@@ -77,8 +86,15 @@ class GameEndScreenView: BaseViewController {
         super.viewDidLoad()
         addSubviews()
         makeLayout()
-        navigationController?.navigationBar.isHidden = false
-        title = "Игра"
+       // navigationController?.navigationBar.isHidden = true
+        
+        if #available(iOS 16.0, *) {
+            let homeBarButtonItem = UIBarButtonItem(title: nil, image: UIImage(systemName: "chevron.backward"), target: self, action: #selector(homeButtonTapped))
+            navigationItem.leftBarButtonItem = homeBarButtonItem
+        } else {
+            let homeBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(homeButtonTapped))
+            navigationItem.leftBarButtonItem = homeBarButtonItem
+        }
         
     }
     
@@ -89,39 +105,52 @@ class GameEndScreenView: BaseViewController {
     @objc func punishmentButtonTapped () {
         presenter.punishmentButtonTapped()
     }
+    
+    @objc private func homeButtonTapped() {
+        presenter.homeButtonTapped()
+    }
 }
 
 extension GameEndScreenView: GameEndViewInput {
     func updatePunishment() {
         punishmentLabel.text = "улыбнись"
     }
+
     
     
 }
 
 private extension GameEndScreenView {
     func addSubviews() {
-        [titleLabel, bombImageView, punishmentLabel, buttonsStack].forEach({ self.view.addSubview($0) })
+        [mainTitle, titleLabel, bombImageView, punishmentLabel, buttonsStack].forEach({ self.view.addSubview($0) })
     }
     
     func makeLayout() {
+        mainTitle.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(50)
+            make.centerX.equalToSuperview()
+        }
+        
         titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview().offset(-15)
+            
             make.leading.trailing.equalToSuperview().inset(constants.titleLabelSidePadding)
             make.top.equalToSuperview().inset(constants.titleLabelTopPadding)
         }
         
         bombImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(166)
+            make.top.equalTo(titleLabel.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-346)
-            make.width.equalTo(bombImageView.snp.height).multipliedBy(constants.imageProportion)
-
         }
         
         punishmentLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(constants.titleLabelSidePadding)
-            make.trailing.equalToSuperview().inset(constants.titleLabelSidePadding)
-            make.top.equalTo(bombImageView.snp.bottom)
+            make.top.equalTo(bombImageView.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(constants.titleLabelSidePadding)
+            make.height.equalTo(120)
+            make.centerX.equalToSuperview()
+        
         }
         
         [punishmentButton, restartButton].forEach({

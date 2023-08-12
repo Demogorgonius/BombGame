@@ -56,6 +56,17 @@
 		A5B41D192A87071D0029AA5E /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B41D0B2A87071D0029AA5E /* GameView.swift */; };
 		A5B41D1A2A87071D0029AA5E /* GameViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B41D0C2A87071D0029AA5E /* GameViewInput.swift */; };
 		A5B41D1D2A8707810029AA5E /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = A5B41D1C2A8707810029AA5E /* Lottie */; };
+		A5B41D1F2A877EF10029AA5E /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B41D1E2A877EF10029AA5E /* SettingsManager.swift */; };
+		A5B41D242A87C3970029AA5E /* DelaGothicOne.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5B41D232A87C3970029AA5E /* DelaGothicOne.ttf */; };
+		A5B41D272A87C9D60029AA5E /* derevyannyiy-stuk-taymera.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A5B41D262A87C9D60029AA5E /* derevyannyiy-stuk-taymera.mp3 */; };
+		A5B41D292A87C9DF0029AA5E /* taymer-na-staryih-chasah.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A5B41D282A87C9DF0029AA5E /* taymer-na-staryih-chasah.mp3 */; };
+		A5B41D2B2A87C9EC0029AA5E /* gorit-fitil-38103.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A5B41D2A2A87C9EC0029AA5E /* gorit-fitil-38103.mp3 */; };
+		A5B41D2D2A87C9F60029AA5E /* moschnyiy-vzryiv-bombyi-s-oskolkami-i-steklom-32159.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A5B41D2C2A87C9F60029AA5E /* moschnyiy-vzryiv-bombyi-s-oskolkami-i-steklom-32159.mp3 */; };
+		A5B41D2F2A87C9FD0029AA5E /* vzryiv-bombyi-syipyatsya-oskolki-32133.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A5B41D2E2A87C9FD0029AA5E /* vzryiv-bombyi-syipyatsya-oskolki-32133.mp3 */; };
+		A5B41D312A87CA030029AA5E /* vzryiv-bombyi-s-vyiryivayuschimsya-plamenem-32161.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A5B41D302A87CA030029AA5E /* vzryiv-bombyi-s-vyiryivayuschimsya-plamenem-32161.mp3 */; };
+		A5B41D332A87CB700029AA5E /* muzyika-iz-igryi-zelda-23480.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A5B41D322A87CB700029AA5E /* muzyika-iz-igryi-zelda-23480.mp3 */; };
+		A5B41D352A87CB800029AA5E /* kitayskiy-novyiy-reper-korotkaya-muzyika-perehodnaya-muzyika-ritm-muzyika-38526.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A5B41D342A87CB800029AA5E /* kitayskiy-novyiy-reper-korotkaya-muzyika-perehodnaya-muzyika-ritm-muzyika-38526.mp3 */; };
+		A5B41D372A87CB880029AA5E /* fonovaya-muzyika-quotproyasneniequot-24769.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A5B41D362A87CB880029AA5E /* fonovaya-muzyika-quotproyasneniequot-24769.mp3 */; };
 		ED0AFBC32A82CCF800588BFD /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0AFBC22A82CCF800588BFD /* RulesViewController.swift */; };
 		ED0AFBC52A82CD4D00588BFD /* RulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0AFBC42A82CD4D00588BFD /* RulesView.swift */; };
 /* End PBXBuildFile section */
@@ -129,6 +140,17 @@
 		A5B41D0A2A87071D0029AA5E /* GameViewOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewOutput.swift; sourceTree = "<group>"; };
 		A5B41D0B2A87071D0029AA5E /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		A5B41D0C2A87071D0029AA5E /* GameViewInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewInput.swift; sourceTree = "<group>"; };
+		A5B41D1E2A877EF10029AA5E /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+		A5B41D232A87C3970029AA5E /* DelaGothicOne.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = DelaGothicOne.ttf; path = BombGame/Fonts/DelaGothicOne.ttf; sourceTree = SOURCE_ROOT; };
+		A5B41D262A87C9D60029AA5E /* derevyannyiy-stuk-taymera.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "derevyannyiy-stuk-taymera.mp3"; sourceTree = "<group>"; };
+		A5B41D282A87C9DF0029AA5E /* taymer-na-staryih-chasah.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "taymer-na-staryih-chasah.mp3"; sourceTree = "<group>"; };
+		A5B41D2A2A87C9EC0029AA5E /* gorit-fitil-38103.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "gorit-fitil-38103.mp3"; sourceTree = "<group>"; };
+		A5B41D2C2A87C9F60029AA5E /* moschnyiy-vzryiv-bombyi-s-oskolkami-i-steklom-32159.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "moschnyiy-vzryiv-bombyi-s-oskolkami-i-steklom-32159.mp3"; sourceTree = "<group>"; };
+		A5B41D2E2A87C9FD0029AA5E /* vzryiv-bombyi-syipyatsya-oskolki-32133.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "vzryiv-bombyi-syipyatsya-oskolki-32133.mp3"; sourceTree = "<group>"; };
+		A5B41D302A87CA030029AA5E /* vzryiv-bombyi-s-vyiryivayuschimsya-plamenem-32161.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "vzryiv-bombyi-s-vyiryivayuschimsya-plamenem-32161.mp3"; sourceTree = "<group>"; };
+		A5B41D322A87CB700029AA5E /* muzyika-iz-igryi-zelda-23480.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "muzyika-iz-igryi-zelda-23480.mp3"; sourceTree = "<group>"; };
+		A5B41D342A87CB800029AA5E /* kitayskiy-novyiy-reper-korotkaya-muzyika-perehodnaya-muzyika-ritm-muzyika-38526.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "kitayskiy-novyiy-reper-korotkaya-muzyika-perehodnaya-muzyika-ritm-muzyika-38526.mp3"; sourceTree = "<group>"; };
+		A5B41D362A87CB880029AA5E /* fonovaya-muzyika-quotproyasneniequot-24769.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "fonovaya-muzyika-quotproyasneniequot-24769.mp3"; sourceTree = "<group>"; };
 		ED0AFBC22A82CCF800588BFD /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
 		ED0AFBC42A82CD4D00588BFD /* RulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -196,16 +218,18 @@
 		A581F5452A804DB500F7321A /* BombGame */ = {
 			isa = PBXGroup;
 			children = (
-				A5B41CF52A87071D0029AA5E /* GameEndModule */,
-				A5B41D012A87071D0029AA5E /* GameModule */,
-				A5B41CDB2A8706FC0029AA5E /* CategoryModule */,
-				A5B41CBF2A8706B50029AA5E /* StartModule */,
-				ED7A37302A8216BF00CAFB8C /* RulesView */,
 				A581F5762A804E2C00F7321A /* App */,
+				A5B41CBF2A8706B50029AA5E /* StartModule */,
+				A5B41CDB2A8706FC0029AA5E /* CategoryModule */,
+				A5B41D012A87071D0029AA5E /* GameModule */,
+				A5B41CF52A87071D0029AA5E /* GameEndModule */,
+				ED7A37302A8216BF00CAFB8C /* RulesView */,
 				8057F38F2A8171910011BE43 /* Base */,
 				A581F5772A804E5000F7321A /* Router */,
 				A581F5782A804E5B00F7321A /* Builder */,
 				A581F57D2A804EF700F7321A /* Services */,
+				A5B41D252A87C8410029AA5E /* Music */,
+				A5B41D222A87C2A20029AA5E /* Fonts */,
 				A581F54F2A804DB700F7321A /* Assets.xcassets */,
 				A581F5512A804DB700F7321A /* LaunchScreen.storyboard */,
 				A581F5542A804DB700F7321A /* Info.plist */,
@@ -259,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				A5B41CD52A8706D30029AA5E /* QuestionsManager.swift */,
+				A5B41D1E2A877EF10029AA5E /* SettingsManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -482,6 +507,30 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		A5B41D222A87C2A20029AA5E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A5B41D232A87C3970029AA5E /* DelaGothicOne.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		A5B41D252A87C8410029AA5E /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				A5B41D262A87C9D60029AA5E /* derevyannyiy-stuk-taymera.mp3 */,
+				A5B41D282A87C9DF0029AA5E /* taymer-na-staryih-chasah.mp3 */,
+				A5B41D2A2A87C9EC0029AA5E /* gorit-fitil-38103.mp3 */,
+				A5B41D2C2A87C9F60029AA5E /* moschnyiy-vzryiv-bombyi-s-oskolkami-i-steklom-32159.mp3 */,
+				A5B41D2E2A87C9FD0029AA5E /* vzryiv-bombyi-syipyatsya-oskolki-32133.mp3 */,
+				A5B41D302A87CA030029AA5E /* vzryiv-bombyi-s-vyiryivayuschimsya-plamenem-32161.mp3 */,
+				A5B41D322A87CB700029AA5E /* muzyika-iz-igryi-zelda-23480.mp3 */,
+				A5B41D342A87CB800029AA5E /* kitayskiy-novyiy-reper-korotkaya-muzyika-perehodnaya-muzyika-ritm-muzyika-38526.mp3 */,
+				A5B41D362A87CB880029AA5E /* fonovaya-muzyika-quotproyasneniequot-24769.mp3 */,
+			);
+			path = Music;
+			sourceTree = "<group>";
+		};
 		ED7A37302A8216BF00CAFB8C /* RulesView */ = {
 			isa = PBXGroup;
 			children = (
@@ -603,8 +652,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5B41D2F2A87C9FD0029AA5E /* vzryiv-bombyi-syipyatsya-oskolki-32133.mp3 in Resources */,
+				A5B41D292A87C9DF0029AA5E /* taymer-na-staryih-chasah.mp3 in Resources */,
 				A581F5532A804DB700F7321A /* LaunchScreen.storyboard in Resources */,
+				A5B41D242A87C3970029AA5E /* DelaGothicOne.ttf in Resources */,
+				A5B41D312A87CA030029AA5E /* vzryiv-bombyi-s-vyiryivayuschimsya-plamenem-32161.mp3 in Resources */,
+				A5B41D272A87C9D60029AA5E /* derevyannyiy-stuk-taymera.mp3 in Resources */,
 				A581F5502A804DB700F7321A /* Assets.xcassets in Resources */,
+				A5B41D2D2A87C9F60029AA5E /* moschnyiy-vzryiv-bombyi-s-oskolkami-i-steklom-32159.mp3 in Resources */,
+				A5B41D332A87CB700029AA5E /* muzyika-iz-igryi-zelda-23480.mp3 in Resources */,
+				A5B41D352A87CB800029AA5E /* kitayskiy-novyiy-reper-korotkaya-muzyika-perehodnaya-muzyika-ritm-muzyika-38526.mp3 in Resources */,
+				A5B41D2B2A87C9EC0029AA5E /* gorit-fitil-38103.mp3 in Resources */,
+				A5B41D372A87CB880029AA5E /* fonovaya-muzyika-quotproyasneniequot-24769.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,6 +714,7 @@
 				A5B41D142A87071D0029AA5E /* GameRouterInput.swift in Sources */,
 				A5B41D102A87071D0029AA5E /* GameEndPresenter.swift in Sources */,
 				A5B41CCD2A8706B50029AA5E /* AskCategory.swift in Sources */,
+				A5B41D1F2A877EF10029AA5E /* SettingsManager.swift in Sources */,
 				A5B41CD62A8706D30029AA5E /* QuestionsManager.swift in Sources */,
 				A5B41CEE2A8706FC0029AA5E /* CategoryView.swift in Sources */,
 				A5B41D172A87071D0029AA5E /* GamePresenter.swift in Sources */,

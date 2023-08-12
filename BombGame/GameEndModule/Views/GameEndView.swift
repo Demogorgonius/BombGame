@@ -77,7 +77,9 @@ class GameEndScreenView: BaseViewController {
         super.viewDidLoad()
         addSubviews()
         makeLayout()
+        navigationController?.navigationBar.isHidden = false
         title = "Игра"
+        
     }
     
     @objc func restartButtonTapped() {

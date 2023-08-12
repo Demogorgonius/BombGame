@@ -1,10 +1,11 @@
 import UIKit
 
 final class GameViewRouter: GameRouterInput {
-    weak var view: UIViewController?
+    weak var view = StartScreenAssembly.assemble(settings: nil)
     
     func routeToStartScreen() {
-        view = StartScreenAssembly.assemble(settings: nil)
-        self.view?.navigationController?.popToRootViewController(animated: true)
+        if let view = view {
+            view.navigationController?.popToRootViewController(animated: true)
+        }
     }
 }

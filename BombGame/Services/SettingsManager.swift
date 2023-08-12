@@ -66,7 +66,7 @@ class SettingsManager: SettingsManagerProtocol {
                       completion: @escaping (Result<GameSettings, Error>) -> Void) {
         
         
-        var settings = GameSettings(gameDuration: gameDuration?.rawValue ?? GameDuration.short.rawValue,
+        let settings = GameSettings(gameDuration: gameDuration?.rawValue ?? GameDuration.short.rawValue,
                                     gameMelody: gameMelody?.rawValue ?? GameMelody.melody1.rawValue,
                                     gameBombExplosion: gameBombExplosion?.rawValue ?? BombExplosion.explSound1.rawValue,
                                     gameTimerSound: gameTimerSound?.rawValue ?? TimerSound.timerSound1.rawValue,

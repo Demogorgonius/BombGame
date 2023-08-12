@@ -5,8 +5,9 @@ extension CategoryCollectionViewCell {
     struct Constants {
         let radius: CGFloat = 50.0
         let imageSize: CGFloat = 100.0
-        let titleSidePadding: CGFloat = 8.0
-        let titleTopPadding: CGFloat = 10
+        let isSelectedImageSize: CGFloat = 30.0
+        let titleSidePadding: CGFloat = 16.0
+        let titleTopPadding: CGFloat = 0
         
         let titleColor: UIColor = BombColor.yellow.color
         let backgroundColor: UIColor = BombColor.violet.color
@@ -23,11 +24,19 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
+    lazy var isSelectedImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(systemName: "checkmark.circle.fill")
+        image.tintColor = .white
+        return image
+    }()
+    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = constants.titleColor
-        label.font = .bold32
+        label.font = .regular16
         label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = false
         label.textAlignment = .center
         label.textAlignment = .center
         return label
@@ -59,6 +68,12 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     func fill(viewModel: CategoryCellViewModel) {
         self.imageView.image = UIImage(named: viewModel.imageName)
         self.titleLabel.text = viewModel.title
+        if viewModel.isSelected == true {
+            self.isSelectedImage.isHidden = false
+        } else {
+            self.isSelectedImage.isHidden = true
+        }
+        
     }
 }
 
@@ -69,13 +84,19 @@ private extension CategoryCollectionViewCell {
     }
     
     func addSubviews() {
-        [imageView, titleLabel].forEach({ self.addSubview($0) })
+        [isSelectedImage, imageView, titleLabel].forEach({ self.addSubview($0) })
     }
     
     func makeConstraints() {
         imageView.snp.makeConstraints { make in
             make.size.equalTo(constants.imageSize)
             make.center.equalToSuperview()
+        }
+        
+        isSelectedImage.snp.makeConstraints { make in
+            make.size.equalTo(constants.isSelectedImageSize)
+            make.leading.equalToSuperview().offset(10)
+            make.top.equalToSuperview().offset(10)
         }
         
         titleLabel.snp.makeConstraints { make in

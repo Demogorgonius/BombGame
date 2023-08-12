@@ -15,7 +15,6 @@ final class StartScreenPresenter {
 
 extension StartScreenPresenter: StartScreenViewOutput {
     func dadTapPlay() {
-        print(settings)
         self.router.routeToGame()
     }
     

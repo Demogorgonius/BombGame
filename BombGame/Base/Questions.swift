@@ -97,3 +97,9 @@ enum Categories: String {
     case internet = "Интернетb"
     
 }
+
+struct SelectedCategories {
+    static var categories: [Categories: Bool] = [Categories.geography: true]
+
+    
+}

@@ -32,6 +32,13 @@ class StartScreenView: BaseViewController {
         return button
     }()
     
+    private lazy var continueButton: UIButton = {
+        let button = createButton(title: "Продолжить", font: .regular24)
+        button.addTarget(self, action: #selector(didTapContinueButton), for: .touchUpInside)
+        button.layer.cornerRadius = constants.violetButtonHeight / 2
+        return button
+    }()
+    
     private lazy var titleLabel: UILabel = {
         return createLabel(
             text: "Игра для компании", font: .bold32,
@@ -54,7 +61,7 @@ class StartScreenView: BaseViewController {
     
     private lazy var buttonsStack: UIStackView = {
         return toStackView(
-            subviews: [startButton, categoryButton],
+            subviews: [startButton, continueButton, categoryButton],
             spacing: 10, axis: .vertical, distribution: .fillEqually,
             alignment: .fill
         )
@@ -64,6 +71,13 @@ class StartScreenView: BaseViewController {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "rulesButton"), for: .normal)
         button.addTarget(self, action: #selector(rulesButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var settingsButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(named: "settingsButton"), for: .normal)
+        button.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -88,7 +102,7 @@ class StartScreenView: BaseViewController {
 extension StartScreenView: StartScreenViewInput {
     
 }
-
+// MARK: - Add Buttons Methods
 private extension StartScreenView {
     
     @objc func didTapCategory() {
@@ -99,14 +113,20 @@ private extension StartScreenView {
         presenter.didTapPlay()
     }
     
+    @objc func didTapContinueButton() {
+        //
+    }
+
     @objc func rulesButtonTapped() {
         presenter.rulesButtonTapped()
     }
     
-    
-    
+    @objc func settingsButtonTapped() {
+        presenter.settingsButtonTapped()
+    }
+
     func addSubviews() {
-        [titleLabel, gameLabel, bombImageView, buttonsStack, rulesButton].forEach({ self.view.addSubview($0) })
+        [titleLabel, gameLabel, bombImageView, buttonsStack, rulesButton, settingsButton].forEach({ self.view.addSubview($0) })
     }
     
     func makeLayout() {
@@ -128,7 +148,7 @@ private extension StartScreenView {
             make.width.equalTo(bombImageView.snp.height).multipliedBy(constants.imageProportion)
         }
         
-        [startButton, categoryButton].forEach({
+        [startButton, continueButton, categoryButton].forEach({
             $0.snp.makeConstraints { make in
                 make.height.equalTo(constants.violetButtonHeight)
             }
@@ -143,6 +163,13 @@ private extension StartScreenView {
         rulesButton.snp.makeConstraints { make in
             make.top.equalTo (categoryButton.snp.bottom).offset(0)
             make.trailing.equalToSuperview().offset(-20)
+            make.height.equalTo(62)
+            make.width.equalTo(62)
+        }
+        
+        settingsButton.snp.makeConstraints { make in
+            make.top.equalTo (categoryButton.snp.bottom).offset(0)
+            make.leading.equalToSuperview().offset(20)
             make.height.equalTo(62)
             make.width.equalTo(62)
         }

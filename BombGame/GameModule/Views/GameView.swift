@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Lottie
+import AVFoundation
 
 extension GameView {
     struct Constants {
@@ -19,6 +20,17 @@ extension GameView {
 }
 
 final class GameView: BaseViewController {
+    
+    enum MusicPath: String {
+        case fire = "gorit-fitil-38103"
+        case bomb = "vzryiv-bombyi-syipyatsya-oskolki-32133"
+        
+        var url: URL? {
+            let path = Bundle.main.path(forResource: self.rawValue, ofType: "mp3")
+            guard let path else { return nil }
+            return URL(fileURLWithPath: path)
+        }
+    }
     
     private let constants: Constants
     private let baseConstants: BaseConstants
@@ -35,6 +47,7 @@ final class GameView: BaseViewController {
     var secondsPassed = 0.0
     var timer = Timer()
     let totalDuration = 8.3
+    private var audioPlayer: AVAudioPlayer?
     var animationSpeed: Double {
         return totalDuration / totalTime
     }
@@ -146,10 +159,12 @@ extension GameView: GameViewInput {
     
     @objc func updateTimer() {
         
+        if secondsPassed == totalTime - 3 {
+            playSound(path: .bomb)
+        }
+        
         if secondsPassed < totalTime {
             secondsPassed += 1
-            
-    
         } else {
             print(secondsPassed)
             timer.invalidate()
@@ -163,6 +178,7 @@ extension GameView: GameViewInput {
     func updateGameUI() {
         startButton.isHidden = true
         startTimer()
+        playSound(path: .fire)
         animationView.play()
         animationView.animationSpeed = animationSpeed
         titleLabel.text = presenter.getQuestion()
@@ -174,12 +190,14 @@ extension GameView: GameViewInput {
     func updateTimerAnimation() {
         if animationView.isAnimationPlaying {
             animationView.pause()
-            elapsedTime = Date.timeIntervalSinceReferenceDate - (startTime ?? 0.0)
+            audioPlayer?.pause()
+            elapsedTime = Double(Int(Date.timeIntervalSinceReferenceDate - (startTime ?? 0.0)))
             timer.invalidate()
             titleLabel.text = "ПАУЗА!!!"
             pauseBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(pauseButtonTapped))
         } else {
             animationView.play()
+            audioPlayer?.play()
             totalTime -= elapsedTime ?? 0.0
             startTimer()
             titleLabel.text = presenter.currentQuestion
@@ -191,6 +209,17 @@ extension GameView: GameViewInput {
 }
 
 private extension GameView {
+    func playSound(path: MusicPath) {
+        guard let url = path.url else { return }
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.play()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     func addSubviews() {
         [mainTitle, titleLabel, animationView, startButton].forEach({ self.view.addSubview($0) })
     }

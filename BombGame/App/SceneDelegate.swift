@@ -15,10 +15,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
+        var settingsManager = SettingsManager()
+        var settingsForGame: GameSettings?
         let window = UIWindow(windowScene: windowScene)
         self.window = window
-        
-        let startScreen = StartScreenAssembly.assemble()
+        settingsManager.getSettings { result in
+            switch result {
+            case .success(let settings):
+                settingsForGame = settings
+            case .failure(_):
+                settingsManager.saveSettings(gameDuration: nil,
+                                             gameMelody: nil,
+                                             gameBombExplosion: nil,
+                                             gameTimerSound: nil,
+                                             isPunishment: nil) { result in
+                    switch result {
+                    case .success(let settings):
+                        settingsForGame = settings
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
+        let startScreen = StartScreenAssembly.assemble(settings: settingsForGame)
         let navigationVC = UINavigationController(rootViewController: startScreen)
         
         window.rootViewController = navigationVC

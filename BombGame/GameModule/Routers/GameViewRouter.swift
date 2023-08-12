@@ -4,7 +4,7 @@ final class GameViewRouter: GameRouterInput {
     weak var view: UIViewController?
     
     func routeToStartScreen() {
-        let view = StartScreenAssembly.assemble()
+        view = StartScreenAssembly.assemble(settings: nil)
         self.view?.navigationController?.popToRootViewController(animated: true)
     }
 }

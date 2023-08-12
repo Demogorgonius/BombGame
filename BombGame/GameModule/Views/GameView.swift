@@ -24,9 +24,13 @@ final class GameView: BaseViewController {
     private let baseConstants: BaseConstants
     private let presenter: GameViewOutput
     
+    private var startTime: TimeInterval?
+    private var elapsedTime: TimeInterval?
+
+    
     private var pauseBarButtonItem: UIBarButtonItem!
     
-    var totalTime = 30.0
+    var totalTime: TimeInterval = 15.0
     var secondsPassed = 0.0
     var timer = Timer()
     let totalDuration = 8.3
@@ -83,6 +87,11 @@ final class GameView: BaseViewController {
         navigationItem.leftBarButtonItem = homeBarButtonItem
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        animationView.isHidden = false
+    }
+    
     // MARK: - Private Methods
     
     @objc private func startButtonTapped() {
@@ -107,7 +116,7 @@ extension GameView: GameViewInput {
     
     func addTimer() {
         timer.invalidate()
-        
+        startTime = Date.timeIntervalSinceReferenceDate
         secondsPassed = 0
         timer = Timer.scheduledTimer(
             timeInterval: 1.0,
@@ -119,7 +128,7 @@ extension GameView: GameViewInput {
     }
     
     @objc func updateTimer() {
-
+        
         if secondsPassed < totalTime {
             secondsPassed += 1
             
@@ -127,6 +136,8 @@ extension GameView: GameViewInput {
         } else {
             print(secondsPassed)
             timer.invalidate()
+            animationView.stop()
+            animationView.isHidden = true
             let endGameScreen = GameEndAssembly.assemble()
             navigationController?.pushViewController(endGameScreen, animated: true)
         }
@@ -136,6 +147,7 @@ extension GameView: GameViewInput {
         startButton.isHidden = true
         startTimer()
         animationView.play()
+        animationView.animationSpeed = animationSpeed
         titleLabel.text = "назовите вид зимнего спорта"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(pauseButtonTapped))
         
@@ -145,11 +157,13 @@ extension GameView: GameViewInput {
     func updateTimerAnimation() {
         if animationView.isAnimationPlaying {
             animationView.pause()
+            elapsedTime = Date.timeIntervalSinceReferenceDate - (startTime ?? 0.0)
             timer.invalidate()
             titleLabel.text = "ПАУЗА!!!"
             pauseBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(pauseButtonTapped))
         } else {
             animationView.play()
+            totalTime -= elapsedTime ?? 0.0
             startTimer()
             titleLabel.text = "Назовите вид зимнего спорта"
             pauseBarButtonItem = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(pauseButtonTapped))
@@ -183,4 +197,5 @@ private extension GameView {
         }
     }
 }
+
 

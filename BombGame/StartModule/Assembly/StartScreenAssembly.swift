@@ -1,9 +1,9 @@
 import UIKit
 
 final class StartScreenAssembly {
-    static func assemble() -> UIViewController {
+    static func assemble(settings: GameSettings?) -> UIViewController {
         let router = StartScreenViewRouter()
-        let presenter = StartScreenPresenter(router: router)
+        let presenter = StartScreenPresenter(router: router, settings: settings)
         let view = StartScreenView(presenter: presenter)
         
         presenter.view = view

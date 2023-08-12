@@ -31,13 +31,23 @@ final class GameView: BaseViewController {
     
     private var pauseBarButtonItem: UIBarButtonItem!
     
-    var totalTime: TimeInterval = 15.0
+    var totalTime: TimeInterval = 5.0
     var secondsPassed = 0.0
     var timer = Timer()
     let totalDuration = 8.3
     var animationSpeed: Double {
         return totalDuration / totalTime
     }
+    
+
+    private lazy var mainTitle: UILabel = {
+        return createLabel(
+            text: "Игра",
+            font: .bold32,
+            textColor: baseConstants.violetColor,
+            alignment: .center
+        )
+    }()
     
     private lazy var titleLabel: UILabel = {
         return createLabel(
@@ -82,9 +92,8 @@ final class GameView: BaseViewController {
         super.viewDidLoad()
         addSubviews()
         makeLayout()
-        title = "Игра"
-        navigationController?.navigationBar.tintColor = baseConstants.violetColor
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: baseConstants.violetColor]
+
+
         if #available(iOS 16.0, *) {
             let homeBarButtonItem = UIBarButtonItem(title: nil, image: UIImage(systemName: "chevron.backward"), target: self, action: #selector(homeButtonTapped))
             navigationItem.leftBarButtonItem = homeBarButtonItem
@@ -183,10 +192,15 @@ extension GameView: GameViewInput {
 
 private extension GameView {
     func addSubviews() {
-        [titleLabel, animationView, startButton].forEach({ self.view.addSubview($0) })
+        [mainTitle, titleLabel, animationView, startButton].forEach({ self.view.addSubview($0) })
     }
     
     func makeLayout() {
+        mainTitle.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(50)
+            make.centerX.equalToSuperview()
+        }
+        
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(127)
             make.leading.equalToSuperview().offset(24)

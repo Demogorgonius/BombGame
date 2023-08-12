@@ -8,4 +8,10 @@ final class GameEndScreenViewRouter: GameEndScreenRouterInput {
         let view = GameAssembly.assemble()
         self.view?.navigationController?.pushViewController(view, animated: true)
     }
+    
+    func routeToStartScreen() {
+        if let view = view {
+            view.navigationController?.popToRootViewController(animated: true)
+        }
+    }
 }

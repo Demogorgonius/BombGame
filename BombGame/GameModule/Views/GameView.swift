@@ -26,6 +26,7 @@ final class GameView: BaseViewController {
     
     private var startTime: TimeInterval?
     private var elapsedTime: TimeInterval?
+    
 
     
     private var pauseBarButtonItem: UIBarButtonItem!
@@ -82,9 +83,16 @@ final class GameView: BaseViewController {
         addSubviews()
         makeLayout()
         title = "Игра"
+        navigationController?.navigationBar.tintColor = baseConstants.violetColor
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: baseConstants.violetColor]
-        let homeBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(homeButtonTapped))
-        navigationItem.leftBarButtonItem = homeBarButtonItem
+        if #available(iOS 16.0, *) {
+            let homeBarButtonItem = UIBarButtonItem(title: nil, image: UIImage(systemName: "chevron.backward"), target: self, action: #selector(homeButtonTapped))
+            navigationItem.leftBarButtonItem = homeBarButtonItem
+        } else {
+            let homeBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(homeButtonTapped))
+            navigationItem.leftBarButtonItem = homeBarButtonItem
+        }
+        presenter.getQuestionsArray()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -148,7 +156,7 @@ extension GameView: GameViewInput {
         startTimer()
         animationView.play()
         animationView.animationSpeed = animationSpeed
-        titleLabel.text = "назовите вид зимнего спорта"
+        titleLabel.text = presenter.getQuestion()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(pauseButtonTapped))
         
         navigationController?.navigationBar.tintColor = baseConstants.violetColor
@@ -165,7 +173,7 @@ extension GameView: GameViewInput {
             animationView.play()
             totalTime -= elapsedTime ?? 0.0
             startTimer()
-            titleLabel.text = "Назовите вид зимнего спорта"
+            titleLabel.text = presenter.currentQuestion
             pauseBarButtonItem = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(pauseButtonTapped))
         }
         navigationItem.rightBarButtonItem = pauseBarButtonItem

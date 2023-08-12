@@ -1,8 +1,14 @@
 import UIKit
 
 extension UIFont {
+    
+    class var regular16: UIFont {
+        return UIFont(name: "DelaGothicOne-Regular", size: 16) ??  UIFont.systemFont(ofSize: 16, weight: .bold)
+        
+    }
+    
     class var regular24: UIFont {
-        return UIFont(name: "DelaGothicOne-Regular", size: 24) ??  UIFont.systemFont(ofSize: 24, weight: .bold)
+        return UIFont(name: "DelaGothicOne-Regular", size: 22) ??  UIFont.systemFont(ofSize: 22, weight: .bold)
         
     }
     

@@ -26,9 +26,13 @@ final class GameView: BaseViewController {
     
     private var pauseBarButtonItem: UIBarButtonItem!
     
-    var totalTime = 5
-    var secondsPassed: CGFloat = 0.0
+    var totalTime = 30.0
+    var secondsPassed = 0.0
     var timer = Timer()
+    let totalDuration = 8.3
+    var animationSpeed: Double {
+        return totalDuration / totalTime
+    }
     
     private lazy var titleLabel: UILabel = {
         return createLabel(
@@ -42,9 +46,10 @@ final class GameView: BaseViewController {
     private lazy var animationView: LottieAnimationView = {
         let view = LottieAnimationView(name: "animationBobm")
         view.loopMode = .loop
-        view.animationSpeed = 1
         view.frame = view.bounds
         view.contentMode = .scaleAspectFill
+        view.animationSpeed = animationSpeed
+        print(animationSpeed)
         view.stop()
         return view
     }()
@@ -72,6 +77,7 @@ final class GameView: BaseViewController {
         super.viewDidLoad()
         addSubviews()
         makeLayout()
+
         title = "Игра"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: baseConstants.violetColor]
         let homeBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(homeButtonTapped))
@@ -99,6 +105,7 @@ final class GameView: BaseViewController {
 
 // MARK: - GameViewInput
 extension GameView: GameViewInput {
+    
     func addTimer() {
         timer.invalidate()
         
@@ -113,21 +120,18 @@ extension GameView: GameViewInput {
     }
     
     @objc func updateTimer() {
-        let animationDuration = TimeInterval(totalTime)
-        
-        if !animationView.isAnimationPlaying {
-            animationView.play()
-        }
-        
-        if secondsPassed < animationDuration {
+
+        if secondsPassed < totalTime {
             secondsPassed += 1
+            
+    
         } else {
+            print(secondsPassed)
             timer.invalidate()
             let endGameScreen = GameEndAssembly.assemble()
             navigationController?.pushViewController(endGameScreen, animated: true)
         }
     }
-    
     
     func updateGameUI() {
         startButton.isHidden = true
@@ -146,11 +150,10 @@ extension GameView: GameViewInput {
             titleLabel.text = "ПАУЗА!!!"
             pauseBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(pauseButtonTapped))
         } else {
-            //updateGameUI()
-                        animationView.play()
-                        startTimer()
-                        titleLabel.text = "Назовите вид зимнего спорта"
-                        pauseBarButtonItem = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(pauseButtonTapped))
+            animationView.play()
+            startTimer()
+            titleLabel.text = "Назовите вид зимнего спорта"
+            pauseBarButtonItem = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(pauseButtonTapped))
         }
         navigationItem.rightBarButtonItem = pauseBarButtonItem
     }

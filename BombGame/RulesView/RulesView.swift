@@ -10,6 +10,8 @@ import SnapKit
 
 final class RulesView: UIView {
     // MARK: - Views
+    
+    var navigationVC: UINavigationController?
     private lazy var backButton = UIButton(type: .system)
     private lazy var mainTitle = UILabel()
     private lazy var secondMainTitle = UILabel()

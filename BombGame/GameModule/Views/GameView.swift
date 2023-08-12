@@ -72,6 +72,7 @@ final class GameView: BaseViewController {
         super.viewDidLoad()
         addSubviews()
         makeLayout()
+        navigationController?.navigationBar.isHidden = false
         title = "Игра"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: baseConstants.violetColor]
         let homeBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(homeButtonTapped))

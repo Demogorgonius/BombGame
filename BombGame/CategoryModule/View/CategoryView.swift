@@ -38,6 +38,7 @@ final class CategoryView: BaseViewController {
         addSubviews()
         makeConstraints()
         presenter.viewDidLoad()
+        navigationController?.navigationBar.isHidden = false
     }
 }
 

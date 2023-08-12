@@ -5,6 +5,6 @@ final class GameViewRouter: GameRouterInput {
     
     func routeToStartScreen() {
         let view = StartScreenAssembly.assemble()
-        self.view?.navigationController?.pushViewController(view, animated: true)
+        self.view?.navigationController?.popToRootViewController(animated: true)
     }
 }

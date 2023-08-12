@@ -14,7 +14,7 @@ final class StartScreenPresenter {
 }
 
 extension StartScreenPresenter: StartScreenViewOutput {
-    func didTapPlay() {
+    func dadTapPlay() {
         self.router.routeToGame()
     }
     
@@ -22,8 +22,7 @@ extension StartScreenPresenter: StartScreenViewOutput {
         self.router.routeToCategory()
     }
     
-    func rulesButtonTapped() {
-        self.router.routeToRules()
+    func didTapContinue() {
+        self.router.routeToContinueGame()
     }
-    
 }

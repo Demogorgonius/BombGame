@@ -14,9 +14,10 @@ final class StartScreenViewRouter: StartScreenRouterInput {
         let view = GameAssembly.assemble()
         self.view?.navigationController?.pushViewController(view, animated: true)
     }
-    
-    func routeToRules() {
-        let view = RulesViewController()
+    func routeToContinueGame() {
+        let settingsRouter = SettingsModuleRouter()
+        let builder = SettingsModuleBuilder()
+        let view = builder.createSettingsModule(router: settingsRouter)
         self.view?.navigationController?.pushViewController(view, animated: true)
     }
 }

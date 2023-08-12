@@ -5,9 +5,9 @@ extension StartScreenView {
     struct Constants {
         let violetButtonHeight: CGFloat = 79.0
         let buttonStakSidePadding: CGFloat = 45.0
-        let titleLabelSidePadding: CGFloat = 2.0
+        let titleLabelSidePadding: CGFloat = 8.0
         let titleLabelTopPadding: CGFloat = 57.0
-        let imageProportion: CGFloat = 375.0 / 409.0
+        
         let bombImage: UIImage? = UIImage(named: "bomb")
     }
 }
@@ -32,6 +32,13 @@ class StartScreenView: BaseViewController {
         return button
     }()
     
+    private lazy var settingsButton: UIButton = {
+        let button = createButton(title: "Продолжить", font: .regular24)
+        button.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
+        button.layer.cornerRadius = constants.violetButtonHeight / 2
+        return button
+    }()
+    
     private lazy var titleLabel: UILabel = {
         return createLabel(
             text: "Игра для компании", font: .bold32,
@@ -48,23 +55,17 @@ class StartScreenView: BaseViewController {
     
     private lazy var bombImageView: UIImageView = {
         let view = UIImageView(image: constants.bombImage)
+        view.backgroundColor = .clear
         view.contentMode = .scaleToFill
         return view
     }()
     
     private lazy var buttonsStack: UIStackView = {
         return toStackView(
-            subviews: [startButton, categoryButton],
+            subviews: [startButton, categoryButton, settingsButton],
             spacing: 10, axis: .vertical, distribution: .fillEqually,
             alignment: .fill
         )
-    }()
-    
-    lazy var rulesButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "rulesButton"), for: .normal)
-        button.addTarget(self, action: #selector(rulesButtonTapped), for: .touchUpInside)
-        return button
     }()
     
     init(presenter: StartScreenViewOutput) {
@@ -83,6 +84,11 @@ class StartScreenView: BaseViewController {
         addSubviews()
         makeLayout()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
 }
 
 extension StartScreenView: StartScreenViewInput {
@@ -90,42 +96,39 @@ extension StartScreenView: StartScreenViewInput {
 }
 
 private extension StartScreenView {
-    
     @objc func didTapCategory() {
         presenter.didTapCategory()
     }
-    
     @objc func didTapPlay() {
-        presenter.didTapPlay()
+        presenter.dadTapPlay()
     }
     
-    @objc func rulesButtonTapped() {
-        presenter.rulesButtonTapped()
+    @objc func didTapContinue() {
+        presenter.didTapContinue()
     }
-    
     
     
     func addSubviews() {
-        [titleLabel, gameLabel, bombImageView, buttonsStack, rulesButton].forEach({ self.view.addSubview($0) })
+        [titleLabel, gameLabel, bombImageView, buttonsStack].forEach({ self.view.addSubview($0) })
     }
     
     func makeLayout() {
         titleLabel.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(constants.titleLabelSidePadding)
-            make.top.equalToSuperview().inset(constants.titleLabelTopPadding)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.height.equalTo(44.8)
         }
         
         gameLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(titleLabel.snp.bottom).offset(2)
+            make.top.equalTo(titleLabel.snp.bottom)
+            make.height.equalTo(44.8)
         }
         
         bombImageView.snp.makeConstraints { make in
-            
+            make.top.equalTo(gameLabel.snp.bottom)
             make.leading.trailing.equalToSuperview()
-            make.top.equalToSuperview().offset(123)
-            make.bottom.equalToSuperview().offset(-280)
-            make.width.equalTo(bombImageView.snp.height).multipliedBy(constants.imageProportion)
+            make.bottom.equalTo(buttonsStack.snp.top)
         }
         
         [startButton, categoryButton].forEach({
@@ -137,14 +140,7 @@ private extension StartScreenView {
         buttonsStack.snp.makeConstraints { make in
             make.top.equalTo(bombImageView.snp.bottom)
             make.leading.trailing.equalToSuperview().inset(constants.buttonStakSidePadding)
-            make.bottom.equalToSuperview().offset(-94)
-        }
-        
-        rulesButton.snp.makeConstraints { make in
-            make.top.equalTo (categoryButton.snp.bottom).offset(0)
-            make.trailing.equalToSuperview().offset(-20)
-            make.height.equalTo(62)
-            make.width.equalTo(62)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
     }
 }

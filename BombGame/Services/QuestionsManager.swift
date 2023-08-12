@@ -9,7 +9,7 @@ import Foundation
 
 protocol QuestionsManagerProtocol: AnyObject {
     
-    func getQuestionsShuffleArray(category: Categories) -> [String]
+    func getQuestionsShuffleArray(categories: [Categories]) -> [String]
     func saveCurrentQuestionsArray(questions: [String])
     func getSavedQuestions(completionBlock: @escaping(Result<[String],Error>)-> Void)
     func getRandomPunishment() -> String
@@ -23,24 +23,26 @@ class QuestionsManager: QuestionsManagerProtocol {
     
     let questions = Questions()
     
-    func getQuestionsShuffleArray(category: Categories) -> [String] {
+    func getQuestionsShuffleArray(categories: [Categories]) -> [String] {
         
-        
-        
-        switch category {
-        case .geography:
-            return questions.geography.shuffled()
-        case .literature:
-            return questions.literature.shuffled()
-        case .music:
-            return questions.music.shuffled()
-        case .food:
-            return questions.food.shuffled()
-        case .other:
-            return questions.other.shuffled()
-        case .internet:
-            return questions.internet.shuffled()
+        var finalArray: [String] = []
+        for category in categories {
+            switch category {
+            case .geography:
+                finalArray.append(contentsOf: questions.geography.shuffled())
+            case .literature:
+                finalArray.append(contentsOf: questions.literature.shuffled())
+            case .music:
+                finalArray.append(contentsOf: questions.music.shuffled())
+            case .food:
+                finalArray.append(contentsOf: questions.food.shuffled())
+            case .other:
+                finalArray.append(contentsOf: questions.other.shuffled())
+            case .internet:
+                finalArray.append(contentsOf: questions.internet.shuffled())
+            }
         }
+        return finalArray.shuffled()
     }
     
     func saveCurrentQuestionsArray(questions: [String]) {

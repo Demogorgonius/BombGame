@@ -6,10 +6,8 @@ final class StartScreenViewRouter: StartScreenRouterInput {
     weak var view: UIViewController?
     
     func routeToCategory() {
-        let view = RulesViewController()
+        let view = CategoryAssembly.assemble()
         self.view?.navigationController?.pushViewController(view, animated: true)
-//        let view = CategoryAssembly.assemble()
-//        self.view?.navigationController?.pushViewController(view, animated: true)
     }
     
     func routeToGame() {

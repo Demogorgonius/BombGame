@@ -137,14 +137,13 @@ private extension StartScreenView {
         
         gameLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(titleLabel.snp.bottom).offset(2)
+            make.top.equalTo(titleLabel.snp.bottom)
         }
         
         bombImageView.snp.makeConstraints { make in
             
             make.leading.trailing.equalToSuperview()
-            make.top.equalToSuperview().offset(123)
-            make.bottom.equalToSuperview().offset(-280)
+//            make.top.equalTo(gameLabel.snp.bottom)
             make.width.equalTo(bombImageView.snp.height).multipliedBy(constants.imageProportion)
         }
         

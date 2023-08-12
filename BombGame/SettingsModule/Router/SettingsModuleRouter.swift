@@ -14,8 +14,7 @@ protocol SettingsModuleRouterProtocol: AnyObject {
 }
 
 class SettingsModuleRouter: SettingsModuleRouterProtocol {
-    let builder = SettingsModuleBuilder()
-    weak var view = builder.createSettingsModule(router: SettingsModuleRouterProtocol)
+    weak var view = StartScreenAssembly.assemble(settings: nil)
     
     func goToStartScreen() {
         if let view = view {

@@ -131,21 +131,22 @@ private extension StartScreenView {
     
     func makeLayout() {
         titleLabel.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(constants.titleLabelSidePadding)
-            make.top.equalToSuperview().inset(constants.titleLabelTopPadding)
-        }
-        
-        gameLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(titleLabel.snp.bottom)
-        }
-        
-        bombImageView.snp.makeConstraints { make in
-            
-            make.leading.trailing.equalToSuperview()
-//            make.top.equalTo(gameLabel.snp.bottom)
-            make.width.equalTo(bombImageView.snp.height).multipliedBy(constants.imageProportion)
-        }
+                    make.leading.trailing.equalToSuperview().inset(constants.titleLabelSidePadding)
+                    make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+                    make.height.equalTo(44.8)
+                }
+
+                gameLabel.snp.makeConstraints { make in
+                    make.centerX.equalToSuperview()
+                    make.top.equalTo(titleLabel.snp.bottom)
+                    make.height.equalTo(44.8)
+                }
+
+                bombImageView.snp.makeConstraints { make in
+                    make.top.equalTo(gameLabel.snp.bottom)
+                    make.leading.trailing.equalToSuperview()
+                    make.bottom.equalTo(buttonsStack.snp.top)
+                }
         
         [startButton, continueButton, categoryButton].forEach({
             $0.snp.makeConstraints { make in

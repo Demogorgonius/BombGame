@@ -32,6 +32,13 @@ final class GameView: BaseViewController {
         }
     }
     
+    init(presenter: GameViewOutput) {
+        self.presenter = presenter
+        self.baseConstants = BaseConstants()
+        self.constants = Constants()
+        super.init()
+    }
+    
     private let constants: Constants
     private let baseConstants: BaseConstants
     private let presenter: GameViewOutput
@@ -43,7 +50,7 @@ final class GameView: BaseViewController {
     
     private var pauseBarButtonItem: UIBarButtonItem!
     
-    var totalTime: TimeInterval = 15.0
+    var totalTime: TimeInterval =  15.0
     var secondsPassed = 0.0
     var timer = Timer()
     let totalDuration = 8.3
@@ -76,7 +83,8 @@ final class GameView: BaseViewController {
         view.loopMode = .loop
         view.frame = view.bounds
         view.contentMode = .scaleAspectFill
-        view.animationSpeed = animationSpeed
+        view.animationSpeed = getAnimationSpeed()
+//        view.animationSpeed = animationSpeed
         print(animationSpeed)
         view.stop()
         return view
@@ -89,12 +97,7 @@ final class GameView: BaseViewController {
         return button
     }()
     
-    init(presenter: GameViewOutput) {
-        self.presenter = presenter
-        self.baseConstants = BaseConstants()
-        self.constants = Constants()
-        super.init()
-    }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -114,7 +117,10 @@ final class GameView: BaseViewController {
             let homeBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(homeButtonTapped))
             navigationItem.leftBarButtonItem = homeBarButtonItem
         }
+        presenter.getSettings()
         presenter.getQuestionsArray()
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -158,13 +164,30 @@ extension GameView: GameViewInput {
         )
     }
     
+    func getAnimationSpeed() -> CGFloat {
+        
+        presenter.getSettings()
+        
+        let duration = presenter.settings?.gameDuration
+        
+        return totalDuration / Double(duration!)
+        
+    }
+    
+    func getTotalTime() -> CGFloat {
+        presenter.getSettings()
+        
+        let duration = presenter.settings?.gameDuration
+        return Double(duration!)
+    }
+    
     @objc func updateTimer() {
         
-        if secondsPassed == totalTime - 3 {
+        if secondsPassed == getTotalTime() - 3 {
             playSound(path: .bomb)
         }
         
-        if secondsPassed < totalTime {
+        if secondsPassed < getTotalTime() {
             secondsPassed += 1
         } else {
             print(secondsPassed)
@@ -182,7 +205,7 @@ extension GameView: GameViewInput {
         startTimer()
         playSound(path: .fire)
         animationView.play()
-        animationView.animationSpeed = animationSpeed
+        animationView.animationSpeed = getAnimationSpeed()
         titleLabel.text = presenter.getQuestion()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(pauseButtonTapped))
         
@@ -200,6 +223,7 @@ extension GameView: GameViewInput {
         } else {
             animationView.play()
             audioPlayer?.play()
+            totalTime = Double(presenter.settings?.gameDuration ?? 15)
             totalTime -= elapsedTime ?? 0.0
             startTimer()
             titleLabel.text = presenter.currentQuestion

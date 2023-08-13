@@ -131,6 +131,7 @@ class SettingsModuleView: BaseViewController {
     lazy var shortButton: UIButton = {
         let button = createButton(title: "Короткое", font: .regular16)
         button.tag = 1
+        button.changesSelectionAsPrimaryAction = true
         button.layer.cornerRadius = 19
         button.layer.borderWidth = 1.5
         button.addTarget(self, action: #selector(durationButtonTapped), for: .touchUpInside)
@@ -140,6 +141,7 @@ class SettingsModuleView: BaseViewController {
     lazy var mediumButton: UIButton = {
         let button = createButton(title: "Середнее", font: .regular16)
         button.tag = 2
+        button.changesSelectionAsPrimaryAction = false
         button.layer.cornerRadius = 19
         button.layer.borderWidth = 1.5
         button.backgroundColor = BombColor.yellow.color
@@ -151,6 +153,7 @@ class SettingsModuleView: BaseViewController {
     lazy var longButton: UIButton = {
         let button = createButton(title: "Длинное", font: .regular16)
         button.tag = 3
+        button.changesSelectionAsPrimaryAction = false
         button.layer.cornerRadius = 19
         button.layer.borderWidth = 1.5
         button.backgroundColor = BombColor.yellow.color
@@ -162,6 +165,7 @@ class SettingsModuleView: BaseViewController {
     lazy var randomButton: UIButton = {
         let button = createButton(title: "Случайное", font: .regular16)
         button.tag = 4
+        button.changesSelectionAsPrimaryAction = false
         button.layer.cornerRadius = 19
         button.layer.borderWidth = 1.5
         button.backgroundColor = BombColor.yellow.color
@@ -357,8 +361,75 @@ extension SettingsModuleView {
         
     }
     
+    func toggleButton(_ sender: UIButton) {
+        
+        if sender.backgroundColor == BombColor.yellow.color {
+            sender.backgroundColor = BombColor.violet.color
+            sender.setTitleColor(BombColor.yellow.color, for: .normal)
+        } else  {
+            sender.backgroundColor = BombColor.yellow.color
+            sender.setTitleColor(BombColor.violet.color, for: .normal)
+        }
+    
+    }
+    
+    func offButton(_ sender: UIButton) {
+        
+            sender.changesSelectionAsPrimaryAction = false
+            sender.backgroundColor = BombColor.yellow.color
+            sender.setTitleColor(BombColor.violet.color, for: .normal)
+     
+    }
+    
     @objc func durationButtonTapped(_ sender: UIButton) {
-         
+       
+        toggleButton(sender)
+        
+       switch sender.tag {
+        case 1:
+           if sender.backgroundColor == BombColor.violet.color {
+               mediumButton.backgroundColor = BombColor.yellow.color
+               mediumButton.setTitleColor(BombColor.violet.color, for: .normal)
+               longButton.backgroundColor = BombColor.yellow.color
+               longButton.setTitleColor(BombColor.violet.color, for: .normal)
+               randomButton.backgroundColor = BombColor.yellow.color
+               randomButton.setTitleColor(BombColor.violet.color, for: .normal)
+           }
+        case 2:
+           if sender.backgroundColor == BombColor.violet.color {
+               shortButton.backgroundColor = BombColor.yellow.color
+               shortButton.setTitleColor(BombColor.violet.color, for: .normal)
+               longButton.backgroundColor = BombColor.yellow.color
+               longButton.setTitleColor(BombColor.violet.color, for: .normal)
+               randomButton.backgroundColor = BombColor.yellow.color
+               randomButton.setTitleColor(BombColor.violet.color, for: .normal)
+           }
+
+        case 3:
+           
+           if sender.backgroundColor == BombColor.violet.color {
+               shortButton.backgroundColor = BombColor.yellow.color
+               shortButton.setTitleColor(BombColor.violet.color, for: .normal)
+               mediumButton.backgroundColor = BombColor.yellow.color
+               mediumButton.setTitleColor(BombColor.violet.color, for: .normal)
+               randomButton.backgroundColor = BombColor.yellow.color
+               randomButton.setTitleColor(BombColor.violet.color, for: .normal)
+           }
+           
+        case 4:
+           
+           if sender.backgroundColor == BombColor.violet.color {
+               shortButton.backgroundColor = BombColor.yellow.color
+               shortButton.setTitleColor(BombColor.violet.color, for: .normal)
+               mediumButton.backgroundColor = BombColor.yellow.color
+               mediumButton.setTitleColor(BombColor.violet.color, for: .normal)
+               longButton.backgroundColor = BombColor.yellow.color
+               longButton.setTitleColor(BombColor.violet.color, for: .normal)
+           }
+           
+        default:
+            return
+        }
     }
     
     @objc func musicButtonTapped(_ sender: UIButton) {

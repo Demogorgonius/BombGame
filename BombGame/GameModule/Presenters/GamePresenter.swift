@@ -28,9 +28,22 @@ final class GamePresenter {
 
 extension GamePresenter: GameViewOutput {
     
+    
     func getQuestionsArray() {
+        let defaults = UserDefaults.standard
+        if defaults.object(forKey: "loadGame") == nil {
+            questionsManager.getSavedQuestions { result in
+                switch result {
+                case .success(let questions):
+                    self.questions = questions
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        } else {
+            questions = questionsManager.getQuestionsShuffleArray(categories: getSelectedCategories())
+        }
         
-        questions = questionsManager.getQuestionsShuffleArray(categories: getSelectedCategories())
     }
     
     func startTimer() {
@@ -64,6 +77,7 @@ extension GamePresenter: GameViewOutput {
             question = questions[0]
             currentQuestion = question
             questions.remove(at: 0)
+            questionsManager.saveCurrentQuestionsArray(questions: questions)
         } else {
             getQuestionsArray()
         }

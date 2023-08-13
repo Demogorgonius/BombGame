@@ -15,7 +15,9 @@ final class StartScreenPresenter {
 
 extension StartScreenPresenter: StartScreenViewOutput {
     func didTapContinueButton() {
-        //
+        let defaults = UserDefaults.standard
+        defaults.set(true, forKey: "loadGame")
+        self.router.routeToGame()
     }
     
     func settingsButtonTapped() {
@@ -23,6 +25,8 @@ extension StartScreenPresenter: StartScreenViewOutput {
     }
     
     func didTapPlay() {
+        let defaults = UserDefaults.standard
+        defaults.set(nil, forKey: "loadGame")
         self.router.routeToGame()
     }
     

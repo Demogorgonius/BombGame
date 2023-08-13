@@ -120,6 +120,7 @@ final class GameView: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         animationView.isHidden = false
+        navigationController?.navigationBar.isHidden = false
     }
     
     // MARK: - Private Methods

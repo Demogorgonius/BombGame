@@ -17,6 +17,7 @@ class StartScreenView: BaseViewController {
     private let constants: Constants
     private let baseConstants: BaseConstants
     private let presenter: StartScreenViewOutput
+    let defaults = UserDefaults.standard
     
     private lazy var startButton: UIButton = {
         let button = createButton(title: "Запустить", font: .regular24)
@@ -99,6 +100,11 @@ class StartScreenView: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if defaults.object(forKey: "loadGame") == nil {
+            continueButton.isEnabled = false
+        } else {
+            continueButton.isEnabled = true
+        }
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
     }
@@ -120,7 +126,7 @@ private extension StartScreenView {
     }
     
     @objc func didTapContinueButton() {
-        //
+        presenter.didTapContinueButton()
     }
 
     @objc func rulesButtonTapped() {

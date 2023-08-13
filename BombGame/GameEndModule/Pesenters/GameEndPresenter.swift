@@ -5,6 +5,7 @@ final class GameEndPresenter {
     weak var view: GameEndViewInput?
     var  previousPunishment = ""
     var currentPunishment = ""
+    var settings: GameSettings?
     
     private let router: GameEndScreenRouterInput
     private let settingsManager: SettingsManagerProtocol
@@ -46,6 +47,17 @@ extension GameEndPresenter: GameEndViewOutput {
     
     func homeButtonTapped() {
         self.router.routeToStartScreen()
+    }
+    
+    func getSettings() {
+        settingsManager.getSettings(completion: { result in
+            switch result {
+            case .success(let settings):
+                self.settings = settings
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        })
     }
     
 }

@@ -16,4 +16,6 @@ protocol GameViewOutput {
     func getQuestion() -> String
     func getQuestionsArray()
     var currentQuestion: String {get}
+    var settings: GameSettings? {get}
+    func getSettings()
 }

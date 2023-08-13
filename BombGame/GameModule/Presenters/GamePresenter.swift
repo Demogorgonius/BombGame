@@ -12,6 +12,7 @@ final class GamePresenter {
     weak var view: GameViewInput?
     var questions: [String] = []
     var currentQuestion: String = ""
+    var settings: GameSettings?
     
     private let router: GameRouterInput
     private let settingsManager: SettingsManagerProtocol
@@ -28,10 +29,20 @@ final class GamePresenter {
 
 extension GamePresenter: GameViewOutput {
     
+    func getSettings() {
+        settingsManager.getSettings(completion: { result in
+            switch result {
+            case .success(let settings):
+                self.settings = settings
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        })
+    }
     
     func getQuestionsArray() {
         let defaults = UserDefaults.standard
-        if defaults.object(forKey: "loadGame") == nil {
+        if defaults.object(forKey: "loadGame") != nil {
             questionsManager.getSavedQuestions { result in
                 switch result {
                 case .success(let questions):
@@ -78,6 +89,7 @@ extension GamePresenter: GameViewOutput {
             currentQuestion = question
             questions.remove(at: 0)
             questionsManager.saveCurrentQuestionsArray(questions: questions)
+            UserDefaults.standard.set(true, forKey: "loadGame")
         } else {
             getQuestionsArray()
         }

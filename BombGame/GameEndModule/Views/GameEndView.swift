@@ -57,7 +57,7 @@ class GameEndScreenView: BaseViewController {
     
     private lazy var punishmentLabel: UILabel = {
         return createLabel(
-            text: "В следующем раунде после каждого ответа хлопать в ладоши",
+            text: "",
             font: .regular24, textColor: baseConstants.violetColor,
             alignment: .center
         )
@@ -76,6 +76,7 @@ class GameEndScreenView: BaseViewController {
         self.baseConstants = BaseConstants()
         self.constants = Constants()
         super.init()
+        presenter.getSettings()
     }
     
     required init?(coder: NSCoder) {
@@ -86,6 +87,8 @@ class GameEndScreenView: BaseViewController {
         super.viewDidLoad()
         addSubviews()
         makeLayout()
+        presenter.getSettings()
+        getPunsh()
        // navigationController?.navigationBar.isHidden = true
         
         if #available(iOS 16.0, *) {
@@ -115,11 +118,26 @@ class GameEndScreenView: BaseViewController {
     @objc private func homeButtonTapped() {
         presenter.homeButtonTapped()
     }
+    
+    func getPunsh() {
+        if presenter.settings?.isPunishment == true {
+            punishmentLabel.text = presenter.getPunishment()
+        } else {
+            
+            return
+        }
+    }
 }
 
 extension GameEndScreenView: GameEndViewInput {
     func updatePunishment() {
-        punishmentLabel.text = presenter.getPunishment()
+        
+        if presenter.settings?.isPunishment == true {
+            punishmentLabel.text = presenter.getPunishment()
+        } else {
+            
+            return
+        }
     }
 
     

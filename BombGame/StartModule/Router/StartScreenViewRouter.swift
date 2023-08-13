@@ -7,8 +7,10 @@ final class StartScreenViewRouter: StartScreenRouterInput {
     weak var view: UIViewController?
     
     func routeToSettings() {
-//        let view = CategoryAssembly.assemble()
-//        self.view?.navigationController?.pushViewController(view, animated: true)
+        let builder = SettingsModuleBuilder()
+        let view = builder.createSettingsModule()
+        self.view?.navigationController?.pushViewController(view, animated: true)
+
     }
     
     func routeToCategory() {

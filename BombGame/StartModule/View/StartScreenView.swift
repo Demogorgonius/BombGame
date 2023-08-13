@@ -76,7 +76,7 @@ class StartScreenView: BaseViewController {
     
     lazy var settingsButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "settingsButton"), for: .normal)
+        button.setImage(UIImage(named: "settings"), for: .normal)
         button.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -97,6 +97,12 @@ class StartScreenView: BaseViewController {
         addSubviews()
         makeLayout()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
 }
 
 extension StartScreenView: StartScreenViewInput {

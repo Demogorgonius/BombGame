@@ -20,7 +20,7 @@ extension GameView {
 }
 
 final class GameView: BaseViewController {
-    
+    // MARK: - MusicPath
     enum MusicPath: String {
         case fire = "gorit-fitil-38103"
         case bomb = "vzryiv-bombyi-syipyatsya-oskolki-32133"
@@ -31,28 +31,27 @@ final class GameView: BaseViewController {
             return URL(fileURLWithPath: path)
         }
     }
-    
+    // MARK: - Properties
     private let constants: Constants
     private let baseConstants: BaseConstants
     private let presenter: GameViewOutput
     
-    private var startTime: TimeInterval?
-    private var elapsedTime: TimeInterval?
-    
-
-    
     private var pauseBarButtonItem: UIBarButtonItem!
     
-    var totalTime: TimeInterval = 5.0
-    var secondsPassed = 0.0
-    var timer = Timer()
-    let totalDuration = 8.3
+    // MARK: - Timer Properties
+    private var startTime: TimeInterval?
+    private var elapsedTime: TimeInterval?
+    private var totalTime: TimeInterval = 5.0
+    
+    private var secondsPassed = 0.0
+    private var timer = Timer()
+    private let totalDuration = 8.3
     private var audioPlayer: AVAudioPlayer?
-    var animationSpeed: Double {
+    private var animationSpeed: Double {
         return totalDuration / totalTime
     }
     
-
+    // MARK: - UI Elements
     private lazy var mainTitle: UILabel = {
         return createLabel(
             text: "Игра",
@@ -89,6 +88,7 @@ final class GameView: BaseViewController {
         return button
     }()
     
+    // MARK: - Initializers
     init(presenter: GameViewOutput) {
         self.presenter = presenter
         self.baseConstants = BaseConstants()
@@ -100,13 +100,13 @@ final class GameView: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubviews()
         makeLayout()
 
-
+        // MARK: - Navigation Bar
         if #available(iOS 16.0, *) {
             let homeBarButtonItem = UIBarButtonItem(title: nil, image: UIImage(systemName: "chevron.backward"), target: self, action: #selector(homeButtonTapped))
             navigationItem.leftBarButtonItem = homeBarButtonItem
@@ -120,6 +120,7 @@ final class GameView: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         animationView.isHidden = false
+        navigationController?.navigationBar.isHidden = false
     }
     
     // MARK: - Private Methods
@@ -143,7 +144,7 @@ final class GameView: BaseViewController {
 
 // MARK: - GameViewInput
 extension GameView: GameViewInput {
-    
+    // MARK: - Timer Methods
     func addTimer() {
         timer.invalidate()
         startTime = Date.timeIntervalSinceReferenceDate
@@ -159,7 +160,7 @@ extension GameView: GameViewInput {
     
     @objc func updateTimer() {
         
-        if secondsPassed == totalTime - 3 {
+        if secondsPassed == totalTime - 1 {
             playSound(path: .bomb)
         }
         
@@ -175,6 +176,7 @@ extension GameView: GameViewInput {
         }
     }
     
+    // MARK: - UI Updates
     func updateGameUI() {
         startButton.isHidden = true
         startTimer()
@@ -189,19 +191,19 @@ extension GameView: GameViewInput {
     
     func updateTimerAnimation() {
         if animationView.isAnimationPlaying {
+            pauseBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(pauseButtonTapped))
             animationView.pause()
             audioPlayer?.pause()
             elapsedTime = Double(Int(Date.timeIntervalSinceReferenceDate - (startTime ?? 0.0)))
             timer.invalidate()
             titleLabel.text = "ПАУЗА!!!"
-            pauseBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(pauseButtonTapped))
         } else {
+            pauseBarButtonItem = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(pauseButtonTapped))
             animationView.play()
             audioPlayer?.play()
             totalTime -= elapsedTime ?? 0.0
             startTimer()
             titleLabel.text = presenter.currentQuestion
-            pauseBarButtonItem = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(pauseButtonTapped))
         }
         navigationItem.rightBarButtonItem = pauseBarButtonItem
     }
@@ -209,6 +211,7 @@ extension GameView: GameViewInput {
 }
 
 private extension GameView {
+    // MARK: - PlaySound
     func playSound(path: MusicPath) {
         guard let url = path.url else { return }
         
@@ -224,6 +227,7 @@ private extension GameView {
         [mainTitle, titleLabel, animationView, startButton].forEach({ self.view.addSubview($0) })
     }
     
+    // MARK: - Make Layout
     func makeLayout() {
         mainTitle.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(50)

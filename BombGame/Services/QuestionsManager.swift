@@ -47,6 +47,7 @@ class QuestionsManager: QuestionsManagerProtocol {
     
     func saveCurrentQuestionsArray(questions: [String]) {
         defaults.set(questions, forKey: "savedQuestions")
+        
     }
     
     func getSavedQuestions(completionBlock: @escaping(Result<[String],Error>)-> Void) {

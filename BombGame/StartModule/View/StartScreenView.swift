@@ -150,7 +150,10 @@ private extension StartScreenView {
 
                 bombImageView.snp.makeConstraints { make in
                     make.top.equalTo(gameLabel.snp.bottom)
-                    make.leading.trailing.equalToSuperview()
+                    make.centerX.equalToSuperview()
+                    make.height.equalTo(340)
+                    make.width.equalTo(350)
+                    //make.leading.trailing.equalToSuperview().inset(constants.titleLabelSidePadding)
                     make.bottom.equalTo(buttonsStack.snp.top)
                 }
         

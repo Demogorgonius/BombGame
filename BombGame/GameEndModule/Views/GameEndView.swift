@@ -95,6 +95,7 @@ class GameEndScreenView: BaseViewController {
             let homeBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(homeButtonTapped))
             navigationItem.leftBarButtonItem = homeBarButtonItem
         }
+       // presenter.getPunishment()
         
     }
     
@@ -113,7 +114,7 @@ class GameEndScreenView: BaseViewController {
 
 extension GameEndScreenView: GameEndViewInput {
     func updatePunishment() {
-        punishmentLabel.text = "улыбнись"
+        punishmentLabel.text = presenter.getPunishment()
     }
 
     

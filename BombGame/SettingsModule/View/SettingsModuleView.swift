@@ -208,6 +208,7 @@ class SettingsModuleView: BaseViewController {
         super.viewDidLoad()
         setupViews()
         setupLayout()
+        presenter.getSettings()
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "DelaGothicOne-Regular", size: 32)!]
         navigationController?.navigationItem.title = "настройки"
@@ -230,6 +231,57 @@ class SettingsModuleView: BaseViewController {
         UINavigationBar.appearance().titleTextAttributes = attributes
         navigationController?.title = "Settings"
         
+        setupUI()
+        
+    }
+    
+    func setupUI(){
+        switch presenter.settings?.gameDuration {
+        case 10:
+            shortButton.backgroundColor = BombColor.violet.color
+            shortButton.setTitleColor(BombColor.yellow.color, for: .normal)
+            mediumButton.backgroundColor = BombColor.yellow.color
+            mediumButton.setTitleColor(BombColor.violet.color, for: .normal)
+            longButton.backgroundColor = BombColor.yellow.color
+            longButton.setTitleColor(BombColor.violet.color, for: .normal)
+            randomButton.backgroundColor = BombColor.yellow.color
+            randomButton.setTitleColor(BombColor.violet.color, for: .normal)
+        case 20:
+            shortButton.backgroundColor = BombColor.yellow.color
+            shortButton.setTitleColor(BombColor.violet.color, for: .normal)
+            mediumButton.backgroundColor = BombColor.violet.color
+            mediumButton.setTitleColor(BombColor.yellow.color, for: .normal)
+            longButton.backgroundColor = BombColor.yellow.color
+            longButton.setTitleColor(BombColor.violet.color, for: .normal)
+            randomButton.backgroundColor = BombColor.yellow.color
+            randomButton.setTitleColor(BombColor.violet.color, for: .normal)
+        case 45:
+            shortButton.backgroundColor = BombColor.yellow.color
+            shortButton.setTitleColor(BombColor.violet.color, for: .normal)
+            mediumButton.backgroundColor = BombColor.yellow.color
+            mediumButton.setTitleColor(BombColor.violet.color, for: .normal)
+            longButton.backgroundColor = BombColor.violet.color
+            longButton.setTitleColor(BombColor.yellow.color, for: .normal)
+            randomButton.backgroundColor = BombColor.yellow.color
+            randomButton.setTitleColor(BombColor.violet.color, for: .normal)
+        default:
+            shortButton.backgroundColor = BombColor.yellow.color
+            shortButton.setTitleColor(BombColor.violet.color, for: .normal)
+            mediumButton.backgroundColor = BombColor.yellow.color
+            mediumButton.setTitleColor(BombColor.violet.color, for: .normal)
+            longButton.backgroundColor = BombColor.yellow.color
+            longButton.setTitleColor(BombColor.violet.color, for: .normal)
+            randomButton.backgroundColor = BombColor.violet.color
+            randomButton.setTitleColor(BombColor.yellow.color, for: .normal)
+            
+        }
+        
+        if presenter.settings!.isPunishment {
+            punishmentSwitch.isOn = true
+        } else {
+            punishmentSwitch.isOn = false
+        }
+      
     }
     
     func setupViews() {
@@ -358,7 +410,18 @@ extension SettingsModuleView {
     }
     
     @objc func switchToggle(_ sender: UISwitch) {
-        
+        switch sender.tag {
+        case 1:
+            if sender.isOn {
+                presenter.punishmentOn(state: true)
+            } else {
+                presenter.punishmentOn(state: false)
+            }
+        case 2:
+            break
+        default :
+            return
+        }
     }
     
     func toggleButton(_ sender: UIButton) {
@@ -394,6 +457,7 @@ extension SettingsModuleView {
                longButton.setTitleColor(BombColor.violet.color, for: .normal)
                randomButton.backgroundColor = BombColor.yellow.color
                randomButton.setTitleColor(BombColor.violet.color, for: .normal)
+               presenter.gameDuration(duration: 10)
            }
         case 2:
            if sender.backgroundColor == BombColor.violet.color {
@@ -403,6 +467,7 @@ extension SettingsModuleView {
                longButton.setTitleColor(BombColor.violet.color, for: .normal)
                randomButton.backgroundColor = BombColor.yellow.color
                randomButton.setTitleColor(BombColor.violet.color, for: .normal)
+               presenter.gameDuration(duration: 20)
            }
 
         case 3:
@@ -414,6 +479,7 @@ extension SettingsModuleView {
                mediumButton.setTitleColor(BombColor.violet.color, for: .normal)
                randomButton.backgroundColor = BombColor.yellow.color
                randomButton.setTitleColor(BombColor.violet.color, for: .normal)
+               presenter.gameDuration(duration: 45)
            }
            
         case 4:
@@ -425,6 +491,7 @@ extension SettingsModuleView {
                mediumButton.setTitleColor(BombColor.violet.color, for: .normal)
                longButton.backgroundColor = BombColor.yellow.color
                longButton.setTitleColor(BombColor.violet.color, for: .normal)
+               presenter.gameDuration(duration: Int.random(in: 10...45))
            }
            
         default:

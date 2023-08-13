@@ -102,8 +102,10 @@ class StartScreenView: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         if defaults.object(forKey: "loadGame") == nil {
             continueButton.isEnabled = false
+            continueButton.alpha = 0.5
         } else {
             continueButton.isEnabled = true
+            continueButton.alpha = 1.0
         }
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true

@@ -10,19 +10,20 @@ import UIKit
 
 protocol SettingsModuleBuilderProtocol: AnyObject {
     
-    func createSettingsModule(router: SettingsModuleRouterProtocol) -> UIViewController
+    func createSettingsModule() -> UIViewController
     
 }
 
 class SettingsModuleBuilder: SettingsModuleBuilderProtocol {
     
-    func createSettingsModule(router: SettingsModuleRouterProtocol) -> UIViewController {
+    func createSettingsModule() -> UIViewController {
         
         let settingsManager = SettingsManager()
         let router = SettingsModuleRouter()
         let view = SettingsModuleView()
         let presenter = SettingsModulePresenter(view: view, router: router, settingsManager: settingsManager)
         view.presenter = presenter
+        router.view = view
         return view
         
     }

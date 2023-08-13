@@ -3,5 +3,6 @@ import UIKit
 protocol StartScreenRouterInput {
     func routeToCategory()
     func routeToGame()
-    func routeToContinueGame()
+    func routeToRules()
+    func routeToSettings()
 }

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 protocol SettingsModuleRouterProtocol: AnyObject {
 
     func goToStartScreen()
@@ -14,12 +14,13 @@ protocol SettingsModuleRouterProtocol: AnyObject {
 }
 
 class SettingsModuleRouter: SettingsModuleRouterProtocol {
-    weak var view = StartScreenAssembly.assemble(settings: nil)
+    
+    weak var view: UIViewController?
     
     func goToStartScreen() {
-        if let view = view {
-            view.navigationController?.popToRootViewController(animated: true)
-        }
+        
+        self.view?.navigationController?.popViewController(animated: true)
+        
     }
     
 }

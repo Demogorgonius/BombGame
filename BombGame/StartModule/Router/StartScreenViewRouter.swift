@@ -3,7 +3,15 @@ import UIKit
 final class StartScreenViewRouter: StartScreenRouterInput {
     
     
+    
     weak var view: UIViewController?
+    
+    func routeToSettings() {
+        let builder = SettingsModuleBuilder()
+        let view = builder.createSettingsModule()
+        self.view?.navigationController?.pushViewController(view, animated: true)
+
+    }
     
     func routeToCategory() {
         let view = CategoryAssembly.assemble()
@@ -14,10 +22,9 @@ final class StartScreenViewRouter: StartScreenRouterInput {
         let view = GameAssembly.assemble()
         self.view?.navigationController?.pushViewController(view, animated: true)
     }
-    func routeToContinueGame() {
-        let settingsRouter = SettingsModuleRouter()
-        let builder = SettingsModuleBuilder()
-        let view = builder.createSettingsModule(router: settingsRouter)
+    
+    func routeToRules() {
+        let view = RulesViewController()
         self.view?.navigationController?.pushViewController(view, animated: true)
     }
 }

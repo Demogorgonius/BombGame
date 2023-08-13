@@ -3,7 +3,15 @@ import UIKit
 final class StartScreenViewRouter: StartScreenRouterInput {
     
     
+    
     weak var view: UIViewController?
+    
+    func routeToSettings() {
+        let builder = SettingsModuleBuilder()
+        let view = builder.createSettingsModule()
+        self.view?.navigationController?.pushViewController(view, animated: true)
+
+    }
     
     func routeToCategory() {
         let view = CategoryAssembly.assemble()

@@ -14,6 +14,14 @@ final class StartScreenPresenter {
 }
 
 extension StartScreenPresenter: StartScreenViewOutput {
+    func didTapContinueButton() {
+        //
+    }
+    
+    func settingsButtonTapped() {
+        self.router.routeToSettings()
+    }
+    
     func didTapPlay() {
         self.router.routeToGame()
     }
@@ -27,3 +35,4 @@ extension StartScreenPresenter: StartScreenViewOutput {
     }
     
 }
+

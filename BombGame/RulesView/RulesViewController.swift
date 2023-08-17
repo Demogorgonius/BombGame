@@ -10,35 +10,47 @@ import SnapKit
 
 class RulesViewController: BaseViewController {
     
-    //    let moduleView = RulesView()
-    
-    //    var navigationVC: UINavigationController!
-    
-    //    override func loadView() {
-    //        moduleView.navigationVC = navigationVC
-    //        view = moduleView
-    //
-    //    }
-    
     // MARK: - Views
-    
     private lazy var backButton = UIButton(type: .system)
     private lazy var mainTitle = UILabel()
     private lazy var secondMainTitle = UILabel()
     private lazy var scrollView = UIScrollView()
     private lazy var firstNumber = UILabel()
     
-    private lazy var firstStack = createStack(text: "Все игроки становятся в круг.", number: 1)
-    private lazy var secondStack = createStack(text: "Первый игрок берет телефон и нажимает кнопку:", number: 2)
+    // MARK: - Stacks
     private lazy var startGameImage = UIImageView()
-    private lazy var thirdtack = createStack(text: "На экране появляется вопрос “Назовите Фрукт”.", number: 3)
-    private lazy var fourthStack = createStack(text: "Игрок отвечает на вопрос и после правильного ответа передает телефон следующему игроку (правильность ответа определяют другие участники).", number: 4)
-    private lazy var fiveStack = createStack(text: "Игроки по кругу отвечают на один и тот же вопрос до тех пор, пока не взорвется бомба.", number: 5)
-    private lazy var sixthStack = createStack(text: "Проигравшим считается тот, в чьих руках взорвалась бомба.", number: 6)
-    private lazy var seventhStack = createStack(text: "Если в настройках выбран режим игры “С Заданиями”, то проигравший выполняет задание.", number: 7)
+    private lazy var firstStack = createStack(
+        text: "Все игроки становятся в круг.",
+        number: 1
+    )
+    private lazy var secondStack = createStack(
+        text: "Первый игрок берет телефон и нажимает кнопку:",
+        number: 2
+    )
+    private lazy var thirdtack = createStack(
+        text: "На экране появляется вопрос “Назовите Фрукт”.",
+        number: 3
+    )
+    private lazy var fourthStack = createStack(
+        text: "Игрок отвечает на вопрос и после правильного ответа передает телефон следующему игроку (правильность ответа определяют другие участники).",
+        number: 4
+    )
+    private lazy var fiveStack = createStack(
+        text: "Игроки по кругу отвечают на один и тот же вопрос до тех пор, пока не взорвется бомба.",
+        number: 5
+    )
+    private lazy var sixthStack = createStack(
+        text: "Проигравшим считается тот, в чьих руках взорвалась бомба.",
+        number: 6
+    )
+    private lazy var seventhStack = createStack(
+        text: "Если в настройках выбран режим игры “С Заданиями”, то проигравший выполняет задание.",
+        number: 7
+    )
     
     private lazy var mainStack = UIStackView()
     
+    // MARK: - CategoryStack
     private lazy var thirdMainTitle = UILabel()
     private lazy var categoryStack = UIStackView()
     private lazy var firstCategoryLabel = UILabel()
@@ -57,24 +69,21 @@ class RulesViewController: BaseViewController {
         setupViews()
         setupConstraints()
         navigationController?.navigationBar.isHidden = true
+        
     }
-    //    init() {
-    //        super.init(frame: .zero)
-    //
-    //        setup()
-    //        setupViews()
-    //        setupConstraints()
-    //    }
-    //
-    //    @available(*, unavailable)
-    //    required init?(coder: NSCoder) {
-    //        fatalError("init(coder:) has not been implemented")
-    //    }
 }
 
 // MARK: - Private Methods
 
 private extension RulesViewController {
+    
+    @objc func backButtonTapped() {
+        navigationController?.popToRootViewController(animated: true)
+    }
+}
+// MARK: - Methods for UI
+private extension RulesViewController {
+    
     func setup() {
         view.backgroundColor = .yellow
         view.addSubview(backButton)
@@ -93,7 +102,6 @@ private extension RulesViewController {
         backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
         backButton.tintColor = .black
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        
         
         mainTitle.text = "Помощь"
         mainTitle.textAlignment = .center
@@ -114,6 +122,7 @@ private extension RulesViewController {
         mainStack.addArrangedSubview(secondStack)
         mainStack.setCustomSpacing(2, after: secondStack)
         mainStack.addArrangedSubview(startGameImage)
+        mainStack.setCustomSpacing(2, after: startGameImage)
         mainStack.addArrangedSubview(thirdtack)
         mainStack.addArrangedSubview(fourthStack)
         mainStack.addArrangedSubview(fiveStack)
@@ -148,20 +157,18 @@ private extension RulesViewController {
         secondCategoryLabel.lineBreakMode = .byWordWrapping
         
         firstCategoryStack.axis = .horizontal
-        firstCategoryStack.spacing = 8
+        firstCategoryStack.spacing = 4
         firstCategoryStack.alignment = .fill
         firstCategoryStack.distribution = .fillEqually
         firstCategoryStack.addArrangedSubview(natureCatImage)
         firstCategoryStack.addArrangedSubview(cinemaCatImage)
         
-        
         secondCategoryStack.axis = .horizontal
-        secondCategoryStack.spacing = 8
+        secondCategoryStack.spacing = 4
         secondCategoryStack.alignment = .fill
         secondCategoryStack.distribution = .fillEqually
         secondCategoryStack.addArrangedSubview(otherCatImage)
         secondCategoryStack.addArrangedSubview(sportCatImage)
-        
         
         natureCatImage.image = UIImage(named: "nature")
         natureCatImage.contentMode = .scaleAspectFit
@@ -172,79 +179,8 @@ private extension RulesViewController {
         otherCatImage.image = UIImage(named: "other")
         otherCatImage.contentMode = .scaleAspectFit
         
-        sportCatImage.image = UIImage(named: "sport")
+        sportCatImage.image = UIImage(named: "sport1")
         sportCatImage.contentMode = .scaleAspectFit
-        
-        
-    }
-    
-    func setupConstraints() {
-        mainTitle.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(10)
-            $0.centerX.equalToSuperview()
-        }
-        
-        backButton.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(16)
-            $0.centerY.equalTo(mainTitle.snp.centerY)
-        }
-        
-        scrollView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(16)
-            $0.top.equalToSuperview().offset(150)
-            $0.bottom.equalToSuperview()
-            
-        }
-        
-        secondMainTitle.snp.makeConstraints {
-            $0.top.equalTo(scrollView.snp.top)
-            $0.centerX.equalTo(scrollView.snp.centerX)
-        }
-        
-        mainStack.snp.makeConstraints {
-            $0.leading.trailing.equalTo(scrollView)
-            $0.top.equalTo(secondMainTitle.snp.bottom).inset(-30)
-            
-        }
-        
-        startGameImage.snp.makeConstraints {
-            $0.centerX.equalTo(mainStack.snp.centerX)
-        }
-        
-        thirdMainTitle.snp.makeConstraints {
-            $0.top.equalTo(mainStack.snp.bottom).offset(40)
-            $0.centerX.equalTo(scrollView.snp.centerX)
-            
-        }
-        
-        categoryStack.snp.makeConstraints {
-            $0.top.equalTo(thirdMainTitle.snp.bottom).offset(40)
-            $0.centerX.equalToSuperview()
-            
-        }
-        
-        firstCategoryLabel.snp.makeConstraints {
-            $0.width.equalTo(300)
-        }
-        
-        secondCategoryLabel.snp.makeConstraints {
-            $0.width.equalTo(300)
-        }
-        
-        firstCategoryStack.snp.makeConstraints {
-            $0.top.equalTo(categoryStack.snp.bottom).offset(10)
-            $0.centerX.equalToSuperview()
-        }
-        
-        secondCategoryStack.snp.makeConstraints {
-            $0.top.equalTo(firstCategoryStack.snp.bottom).offset(-20)
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(scrollView.snp.bottom)
-        }
-    }
-    
-    @objc func backButtonTapped() {
-        navigationController?.popToRootViewController(animated: true)
     }
     
     func createText() -> NSMutableAttributedString  {
@@ -295,25 +231,80 @@ private extension RulesViewController {
         stack.addArrangedSubview(view)
         stack.addArrangedSubview(label)
         
-        
         view.snp.makeConstraints {
             $0.width.height.equalTo(29)
         }
         
         currentNumber.snp.makeConstraints {
             $0.center.equalToSuperview()
-            
         }
         
         label.snp.makeConstraints {
             $0.width.equalTo(300)
         }
-        
-        
-        
-        
         return stack
     }
     
-    
+    func setupConstraints() {
+        mainTitle.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(10)
+            $0.centerX.equalToSuperview()
+        }
+        
+        backButton.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(16)
+            $0.centerY.equalTo(mainTitle.snp.centerY)
+        }
+        
+        scrollView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.top.equalToSuperview().offset(150)
+            $0.bottom.equalToSuperview()
+        }
+        
+        secondMainTitle.snp.makeConstraints {
+            $0.top.equalTo(scrollView.snp.top)
+            $0.centerX.equalTo(scrollView.snp.centerX)
+        }
+        
+        mainStack.snp.makeConstraints {
+            $0.leading.trailing.equalTo(scrollView)
+            $0.top.equalTo(secondMainTitle.snp.bottom).inset(-30)
+        }
+        
+        startGameImage.snp.makeConstraints {
+            $0.centerX.equalTo(mainStack.snp.centerX)
+        }
+        
+        thirdMainTitle.snp.makeConstraints {
+            $0.top.equalTo(mainStack.snp.bottom).offset(40)
+            $0.centerX.equalTo(scrollView.snp.centerX)
+        }
+        
+        categoryStack.snp.makeConstraints {
+            $0.top.equalTo(thirdMainTitle.snp.bottom).offset(40)
+            $0.centerX.equalToSuperview()
+        }
+        
+        firstCategoryLabel.snp.makeConstraints {
+            $0.width.equalTo(300)
+        }
+        
+        secondCategoryLabel.snp.makeConstraints {
+            $0.width.equalTo(300)
+        }
+        
+        firstCategoryStack.snp.makeConstraints {
+            $0.height.equalTo(200)
+            $0.top.equalTo(categoryStack.snp.bottom).offset(10)
+            $0.centerX.equalToSuperview()
+        }
+        
+        secondCategoryStack.snp.makeConstraints {
+            $0.top.equalTo(firstCategoryStack.snp.bottom).offset(-10)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(200)
+            $0.bottom.equalTo(scrollView.snp.bottom)
+        }
+    }
 }

@@ -14,15 +14,3 @@ protocol ModuleBuilderProtocol: AnyObject {
     
 }
 
-//class ModuleBuilder: ModuleBuilderProtocol {
-//    
-////    func createStartScreenModule(router: RouterProtocol) -> UIViewController {
-////        
-////        let presenter = StartScreenPresenter(router: router)
-////        let view = StartScreenView()
-////        view.presenter = presenter
-////        return view
-////        
-////    }
-//    
-//}

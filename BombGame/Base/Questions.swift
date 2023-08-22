@@ -87,14 +87,14 @@ struct Questions {
 
 }
 
-enum Categories: String {
+enum Categories: String, CaseIterable {
     
     case geography = "География"
     case literature = "Литература"
     case music = "Музыка"
     case food = "Кулинария"
     case other = "Разное"
-    case internet = "Интернетb"
+    case internet = "Интернет"
     
 }
 

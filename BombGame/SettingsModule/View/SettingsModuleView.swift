@@ -92,6 +92,12 @@ class SettingsModuleView: BaseViewController {
         return label
     }()
     
+    lazy var backMusicPiker: UIPickerView = {
+        let picker = UIPickerView()
+        
+        return picker
+    }()
+    
     lazy var bombTimerLabel: UILabel = {
         let label = UILabel()
         label.text = "Тикание бомбы"

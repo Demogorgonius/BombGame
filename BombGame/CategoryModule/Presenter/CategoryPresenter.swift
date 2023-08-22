@@ -14,22 +14,24 @@ final class CategoryPresenter {
 extension CategoryPresenter: CategoryViewOutput {
     
     func viewDidLoad() {
-        let cellModel: [CategoryCellViewModel] = [.init(title: Categories.geography.rawValue, imageName: "georgraphy", isSelected: self.isSelectedCategory(category: .geography), didSelect: {
-            self.togleCategory(category: .geography) }),
-         .init(title: Categories.other.rawValue, imageName: "sport", isSelected: self.isSelectedCategory(category: .other), didSelect: {
-             self.togleCategory(category: .other)}),
-         .init(title: Categories.food.rawValue, imageName: "food", isSelected: self.isSelectedCategory(category: .food), didSelect: {
-             self.togleCategory(category: .food)}),
-         .init(title: Categories.literature.rawValue, imageName: "literature", isSelected: self.isSelectedCategory(category: .literature), didSelect: {
-             self.togleCategory(category: .literature)}),
-         .init(title: Categories.music.rawValue, imageName: "music", isSelected: self.isSelectedCategory(category: .music), didSelect: {
-             self.togleCategory(category: .music)}),
-         .init(title: Categories.internet.rawValue, imageName: "internet", isSelected: self.isSelectedCategory(category: .internet), didSelect: {
-             self.togleCategory(category: .internet)})]
-        
+
         DispatchQueue.main.async {
-            self.view?.update(with: cellModel)
+            self.view?.update(with: self.createModel())
         }
+    }
+    
+    func createModel() -> [CategoryCellViewModel] {
+        var model: [CategoryCellViewModel] = []
+        let catArray = Categories.allCases
+    
+        for cat in catArray {
+            model.append(CategoryCellViewModel(title: cat.rawValue, imageName: "\(cat)", isSelected: self.isSelectedCategory(category: cat), didSelect: {
+                self.togleCategory(category: cat)
+            }))
+            print(cat)
+        }
+        return model
+        
     }
     
     func togleCategory(category: Categories) {

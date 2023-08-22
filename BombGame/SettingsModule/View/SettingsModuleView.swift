@@ -137,7 +137,7 @@ class SettingsModuleView: BaseViewController {
     lazy var shortButton: UIButton = {
         let button = createButton(title: "Короткое", font: .regular16)
         button.tag = 1
-        button.changesSelectionAsPrimaryAction = true
+        button.changesSelectionAsPrimaryAction = false
         button.layer.cornerRadius = 19
         button.layer.borderWidth = 1.5
         button.addTarget(self, action: #selector(durationButtonTapped), for: .touchUpInside)
@@ -438,6 +438,11 @@ extension SettingsModuleView {
         } else  {
             sender.backgroundColor = BombColor.yellow.color
             sender.setTitleColor(BombColor.violet.color, for: .normal)
+        }
+        
+        if shortButton.backgroundColor == BombColor.yellow.color && mediumButton.backgroundColor == BombColor.yellow.color && longButton.backgroundColor == BombColor.yellow.color && randomButton.backgroundColor == BombColor.yellow.color {
+            sender.backgroundColor = BombColor.violet.color
+            sender.setTitleColor(BombColor.yellow.color, for: .normal)
         }
     
     }

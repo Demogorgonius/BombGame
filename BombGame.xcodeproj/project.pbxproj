@@ -72,7 +72,6 @@
 		A5B41D432A881DAC0029AA5E /* SettingsModuleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B41D422A881DAC0029AA5E /* SettingsModuleRouter.swift */; };
 		A5B41D452A881DC10029AA5E /* SettingsModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B41D442A881DC10029AA5E /* SettingsModuleView.swift */; };
 		ED0AFBC32A82CCF800588BFD /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0AFBC22A82CCF800588BFD /* RulesViewController.swift */; };
-		ED0AFBC52A82CD4D00588BFD /* RulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0AFBC42A82CD4D00588BFD /* RulesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,7 +159,6 @@
 		A5B41D422A881DAC0029AA5E /* SettingsModuleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModuleRouter.swift; sourceTree = "<group>"; };
 		A5B41D442A881DC10029AA5E /* SettingsModuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModuleView.swift; sourceTree = "<group>"; };
 		ED0AFBC22A82CCF800588BFD /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
-		ED0AFBC42A82CD4D00588BFD /* RulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,12 +224,12 @@
 		A581F5452A804DB500F7321A /* BombGame */ = {
 			isa = PBXGroup;
 			children = (
-				A5B41D382A881D250029AA5E /* SettingsModule */,
 				A581F5762A804E2C00F7321A /* App */,
 				A5B41CBF2A8706B50029AA5E /* StartModule */,
 				A5B41CDB2A8706FC0029AA5E /* CategoryModule */,
 				A5B41D012A87071D0029AA5E /* GameModule */,
 				A5B41CF52A87071D0029AA5E /* GameEndModule */,
+				A5B41D382A881D250029AA5E /* SettingsModule */,
 				ED7A37302A8216BF00CAFB8C /* RulesView */,
 				8057F38F2A8171910011BE43 /* Base */,
 				A581F5772A804E5000F7321A /* Router */,
@@ -587,7 +585,6 @@
 			isa = PBXGroup;
 			children = (
 				ED0AFBC22A82CCF800588BFD /* RulesViewController.swift */,
-				ED0AFBC42A82CD4D00588BFD /* RulesView.swift */,
 			);
 			path = RulesView;
 			sourceTree = "<group>";
@@ -782,7 +779,6 @@
 				A5B41D1A2A87071D0029AA5E /* GameViewInput.swift in Sources */,
 				A581F5832A8050FE00F7321A /* ModuleBuilder.swift in Sources */,
 				ED0AFBC32A82CCF800588BFD /* RulesViewController.swift in Sources */,
-				ED0AFBC52A82CD4D00588BFD /* RulesView.swift in Sources */,
 				A5B41CF12A8706FC0029AA5E /* CategoryCellViewModel.swift in Sources */,
 				A5B41CEF2A8706FC0029AA5E /* CategoryViewOutput.swift in Sources */,
 				A5B41CD22A8706B50029AA5E /* StartScreenViewInput.swift in Sources */,
